@@ -1,0 +1,27 @@
+# ninja log v6
+631	3537	7575343522875950	CMakeFiles/MedicalDocuments.dir/main.cpp.obj	fd5493969447edae
+10	627	7575343521833636	MedicalDocuments_autogen/timestamp	9f7691a8fb7dab2
+634	3739	7575343522900015	CMakeFiles/MedicalDocuments.dir/mainwindow.cpp.obj	2016d99fbc45e34c
+10	627	7575343521833636	MedicalDocuments_autogen/mocs_compilation.cpp	9f7691a8fb7dab2
+636	3603	7575343522935826	CMakeFiles/MedicalDocuments.dir/appointmentwindow.cpp.obj	3023634a23009645
+10	627	7575343521833636	D:/Projects/MedicalDocuments/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/MedicalDocuments_autogen/timestamp	9f7691a8fb7dab2
+10	627	7575343521833636	D:/Projects/MedicalDocuments/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/MedicalDocuments_autogen/mocs_compilation.cpp	9f7691a8fb7dab2
+4352	4745	7575343560096656	MedicalDocuments.exe	97a9aeb4d8f79e06
+642	3872	7575343522993656	CMakeFiles/MedicalDocuments.dir/registerwindow.cpp.obj	3c30ca4072e4e7dc
+653	3236	7575343523105430	CMakeFiles/MedicalDocuments.dir/Password/Check/PasswordChecker.cpp.obj	cc91ef7a934afcfd
+639	3894	7575343522962239	CMakeFiles/MedicalDocuments.dir/authorizationwindow.cpp.obj	a77c36f42143fe79
+628	3989	7575343522846449	CMakeFiles/MedicalDocuments.dir/MedicalDocuments_autogen/mocs_compilation.cpp.obj	f83039eeb088af74
+649	4111	7575343523065424	CMakeFiles/MedicalDocuments.dir/redactwindow.cpp.obj	24b34d745d477c20
+646	4352	7575343523035413	CMakeFiles/MedicalDocuments.dir/doctorclientwindow.cpp.obj	7b90bccca034950c
+657	2450	7575343523145436	CMakeFiles/MedicalDocuments.dir/Password/Check/PasswordCondition.cpp.obj	f6dc3bb7c6d3e2d7
+9	175	7575350998924737	MedicalDocuments_autogen/timestamp	9f7691a8fb7dab2
+9	175	7575350998924737	MedicalDocuments_autogen/mocs_compilation.cpp	9f7691a8fb7dab2
+9	175	7575350998924737	D:/Projects/MedicalDocuments/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/MedicalDocuments_autogen/timestamp	9f7691a8fb7dab2
+9	175	7575350998924737	D:/Projects/MedicalDocuments/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/MedicalDocuments_autogen/mocs_compilation.cpp	9f7691a8fb7dab2
+178	2367	7575351000617336	CMakeFiles/MedicalDocuments.dir/appointmentwindow.cpp.obj	3023634a23009645
+175	2535	7575351000589907	CMakeFiles/MedicalDocuments.dir/mainwindow.cpp.obj	2016d99fbc45e34c
+181	2577	7575351000640757	CMakeFiles/MedicalDocuments.dir/authorizationwindow.cpp.obj	a77c36f42143fe79
+184	2632	7575351000666502	CMakeFiles/MedicalDocuments.dir/registerwindow.cpp.obj	3c30ca4072e4e7dc
+190	2832	7575351000736166	CMakeFiles/MedicalDocuments.dir/redactwindow.cpp.obj	24b34d745d477c20
+187	3050	7575351000700946	CMakeFiles/MedicalDocuments.dir/doctorclientwindow.cpp.obj	7b90bccca034950c
+3050	3469	7575351029337470	MedicalDocuments.exe	97a9aeb4d8f79e06
