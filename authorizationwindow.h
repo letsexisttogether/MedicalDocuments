@@ -2,7 +2,7 @@
 #define AUTHORIZATIONWINDOW_H
 
 #include <QMainWindow>
-#include "Password/Check/PasswordChecker.hpp"
+#include "Authorization/FieldCheck/FieldChecker.hpp"
 
 namespace Ui {
 class AuthorizationWindow;
@@ -25,7 +25,7 @@ private:
     Ui::AuthorizationWindow *ui;
     bool isDoctor = true; //тестова фігня потім буде зчитуватися з бази даних
 
-    PasswordChecker m_Checker{};
+    FieldChecker m_PasswordChecker{};
 };
 
 #endif // AUTHORIZATIONWINDOW_H

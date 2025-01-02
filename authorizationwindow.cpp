@@ -17,18 +17,19 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
 
     // Password фігня
 
-    PasswordCondition length
+    FieldCondition length
     {
-        //"Пароль повинен мати не менше 8 знаків",
+        //"Пароль повинен мати не менше 8 та не більше 64 знаків",
         "Password < 8",
         [] (const QString& password)
         {
-            return password.length() >= 8;
+            const qsizetype length = password.length();
+            return length >= 8 && length <= 64;
         }
     };
-    m_Checker.AddCondition(std::move(length));
+    m_PasswordChecker.AddCondition(std::move(length));
 
-    PasswordCondition uppercase
+    FieldCondition uppercase
     {
         //"Пароль повинен містити хоча б одну велику літеру",
         "No uppercase letter",
@@ -37,9 +38,9 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
             return password.contains(QRegularExpression{ "[A-Z]" });
         }
     };
-    m_Checker.AddCondition(std::move(uppercase));
+    m_PasswordChecker.AddCondition(std::move(uppercase));
 
-    PasswordCondition digit
+    FieldCondition digit
     {
         //"Пароль повинен містити хоча б одну цифру",
         "No digit",
@@ -48,9 +49,9 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
             return password.contains(QRegularExpression{ "[0-9]" });
         }
     };
-    m_Checker.AddCondition(std::move(digit));
+    m_PasswordChecker.AddCondition(std::move(digit));
 
-    PasswordCondition specialChar
+    FieldCondition specialChar
     {
         //"Пароль повинен містити хоча б один спеціальний символ",
         "No special character",
@@ -58,11 +59,11 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
         {
             return password.contains(QRegularExpression
             {
-                "[!@#$%^&*(),.?\":{}|<>]"
+                "[!@#$%^&*(),.?\":{}|<>-]"
             });
         }
     };
-    m_Checker.AddCondition(std::move(specialChar));
+    m_PasswordChecker.AddCondition(std::move(specialChar));
 }
 
 AuthorizationWindow::~AuthorizationWindow()
@@ -73,7 +74,7 @@ AuthorizationWindow::~AuthorizationWindow()
 void AuthorizationWindow::AcceptData()
 {
     const QString password{ ui->passwordEdit->text() };
-    if (!m_Checker.CheckPassword(password))
+    if (!m_PasswordChecker.CheckPassword(password))
     {
         return;
     }

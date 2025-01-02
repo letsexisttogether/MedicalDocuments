@@ -28,9 +28,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         registerwindow.h registerwindow.cpp registerwindow.ui
         doctorclientwindow.h doctorclientwindow.cpp doctorclientwindow.ui
         redactwindow.h redactwindow.cpp redactwindow.ui
-        Password/Check/PasswordChecker.hpp Password/Check/PasswordChecker.cpp
-		Password/Check/PasswordCondition.hpp Password/Check/PasswordCondition.cpp
-
+		Authorization/FieldCheck/FieldChecker.hpp Authorization/FieldCheck/FieldChecker.cpp
+		Authorization/FieldCheck/FieldCondition.hpp Authorization/FieldCheck/FieldCondition.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MedicalDocuments APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

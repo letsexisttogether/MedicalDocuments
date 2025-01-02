@@ -1,15 +1,15 @@
-#include "PasswordChecker.hpp"
+#include "FieldChecker.hpp"
 
 #include <QDebug>
 
-PasswordChecker::PasswordChecker(const Conditions& conditions)
+FieldChecker::FieldChecker(const Conditions& conditions)
     : m_Conditions{ conditions }
 {}
 
-bool PasswordChecker::CheckPassword(const QString password)
+bool FieldChecker::CheckPassword(const QString password)
     noexcept
 {
-    for (const PasswordCondition& condition : m_Conditions)
+    for (const FieldCondition& condition : m_Conditions)
     {
         if (!condition.Check(password))
         {
@@ -22,7 +22,7 @@ bool PasswordChecker::CheckPassword(const QString password)
     return true;
 }
 
-void PasswordChecker::AddCondition(PasswordCondition&& condition)
+void FieldChecker::AddCondition(FieldCondition&& condition)
 {
     m_Conditions.append(std::move(condition));
 }
