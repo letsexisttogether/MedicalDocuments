@@ -1,5 +1,8 @@
 #include "authorizationwindow.h"
 #include "ui_authorizationwindow.h"
+
+#include <QRegularExpression>
+
 #include "mainwindow.h"
 #include "registerwindow.h"
 #include "doctorclientwindow.h"
@@ -24,6 +27,42 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
         }
     };
     m_Checker.AddCondition(std::move(length));
+
+    PasswordCondition uppercase
+    {
+        //"Пароль повинен містити хоча б одну велику літеру",
+        "No uppercase letter",
+        [] (const QString& password)
+        {
+            return password.contains(QRegularExpression{ "[A-Z]" });
+        }
+    };
+    m_Checker.AddCondition(std::move(uppercase));
+
+    PasswordCondition digit
+    {
+        //"Пароль повинен містити хоча б одну цифру",
+        "No digit",
+        [] (const QString& password)
+        {
+            return password.contains(QRegularExpression{ "[0-9]" });
+        }
+    };
+    m_Checker.AddCondition(std::move(digit));
+
+    PasswordCondition specialChar
+    {
+        //"Пароль повинен містити хоча б один спеціальний символ",
+        "No special character",
+        [] (const QString& password)
+        {
+            return password.contains(QRegularExpression
+            {
+                "[!@#$%^&*(),.?\":{}|<>]"
+            });
+        }
+    };
+    m_Checker.AddCondition(std::move(specialChar));
 }
 
 AuthorizationWindow::~AuthorizationWindow()
