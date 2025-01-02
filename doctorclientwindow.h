@@ -19,6 +19,8 @@ public:
 
 public slots:
     void OnPatientChange(const QString &current_patient);
+    void openCreateWindow();
+    void LogOut();
 
 private:
     Ui::DoctorClientWindow *ui;

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "appointmentwindow.h"
+#include "Authorization/Window/authorizationwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     connect(ui->openAppointmentWindowButton, &QPushButton::clicked, this, &MainWindow::openAppointmentWindow);
+    connect(ui->logOutButton, &QPushButton::clicked, this, &MainWindow::LogOut);
 
     QWidget *scrollWidget = ui->scrollArea->widget();
     QVBoxLayout *scrollLayout = qobject_cast<QVBoxLayout *>(scrollWidget->layout());
@@ -49,5 +51,12 @@ void MainWindow::openAppointmentWindow()
     appointmentWindow->show();
 
     // Закриваємо перше вікно
+    this->close();
+}
+
+void MainWindow::LogOut()
+{
+    AuthorizationWindow* preivous = new AuthorizationWindow();
+    preivous->show();
     this->close();
 }

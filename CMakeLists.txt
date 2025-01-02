@@ -36,6 +36,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         doctorclientwindow.h doctorclientwindow.cpp doctorclientwindow.ui
         redactwindow.h redactwindow.cpp redactwindow.ui
 		${AUTHORIZATION_SOURCES}
+                createwindow.h createwindow.cpp createwindow.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MedicalDocuments APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

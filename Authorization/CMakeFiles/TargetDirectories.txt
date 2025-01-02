@@ -1,0 +1,9 @@
+D:/QtProjects/sasha/MedicalDocuments/Authorization/CMakeFiles/MedicalDocuments.dir
+D:/QtProjects/sasha/MedicalDocuments/Authorization/CMakeFiles/edit_cache.dir
+D:/QtProjects/sasha/MedicalDocuments/Authorization/CMakeFiles/rebuild_cache.dir
+D:/QtProjects/sasha/MedicalDocuments/Authorization/CMakeFiles/list_install_components.dir
+D:/QtProjects/sasha/MedicalDocuments/Authorization/CMakeFiles/install.dir
+D:/QtProjects/sasha/MedicalDocuments/Authorization/CMakeFiles/install/local.dir
+D:/QtProjects/sasha/MedicalDocuments/Authorization/CMakeFiles/install/strip.dir
+D:/QtProjects/sasha/MedicalDocuments/Authorization/CMakeFiles/MedicalDocuments_autogen_timestamp_deps.dir
+D:/QtProjects/sasha/MedicalDocuments/Authorization/CMakeFiles/MedicalDocuments_autogen.dir

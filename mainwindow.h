@@ -25,6 +25,7 @@ public:
 
 private slots:
     void openAppointmentWindow();
+    void LogOut();
 
 private:
     Ui::MainWindow *ui;

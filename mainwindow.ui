@@ -76,7 +76,7 @@
      <string>Ваші записи</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="logOutButton">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -86,7 +86,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Налаштування профілю</string>
+     <string>Вийти з акаунту</string>
     </property>
    </widget>
    <widget class="QPushButton" name="openAppointmentWindowButton">

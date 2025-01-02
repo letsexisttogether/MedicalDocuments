@@ -3,6 +3,8 @@
 #include "QVBoxLayout"
 #include "QTextEdit"
 #include "redactwindow.h"
+#include "createwindow.h"
+#include "Authorization/Window/authorizationwindow.h"
 
 DoctorClientWindow::DoctorClientWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +20,8 @@ DoctorClientWindow::DoctorClientWindow(QWidget *parent)
     ui->patientsBox->addItem("Oleskandr");
 
     connect(ui->patientsBox, &QComboBox::currentTextChanged, this, &DoctorClientWindow::OnPatientChange);
+    connect(ui->addButton, &QPushButton::clicked, this, &DoctorClientWindow::openCreateWindow);
+    connect(ui->logOutButton, &QPushButton::clicked, this, &DoctorClientWindow::LogOut);
 }
 
 DoctorClientWindow::~DoctorClientWindow()
@@ -89,4 +93,18 @@ void DoctorClientWindow::OnPatientChange(const QString &current_patient)
         // Додаємо до прокрутки
         scrollLayout->addWidget(recordWidget);
     }
+}
+
+void DoctorClientWindow::openCreateWindow()
+{
+    this->hide();
+    CreateWindow* createWindow = new CreateWindow(this); //потім БД
+    createWindow->show();
+}
+
+void DoctorClientWindow::LogOut()
+{
+    AuthorizationWindow* preivous = new AuthorizationWindow();
+    preivous->show();
+    this->close();
 }
