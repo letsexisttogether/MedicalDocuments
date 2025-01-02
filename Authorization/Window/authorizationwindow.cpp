@@ -12,8 +12,12 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->acceptButton, &QPushButton::clicked, this, &AuthorizationWindow::AcceptData);
-    connect(ui->registerButton, &QPushButton::clicked, this, &AuthorizationWindow::OpenRegistration);
+    connect(ui->acceptButton, &QPushButton::clicked, this,
+        &AuthorizationWindow::AcceptData);
+    connect(ui->registerButton, &QPushButton::clicked, this,
+        &AuthorizationWindow::OpenRegistration);
+    connect(ui->passwordVisibility, &QCheckBox::checkStateChanged, this,
+        &AuthorizationWindow::TogglePasswordVisibility);
 
     // Password фігня
 
@@ -99,6 +103,8 @@ void AuthorizationWindow::AcceptData()
     const QString password{ ui->passwordEdit->text() };
     if (!m_PasswordChecker.CheckField(password))
     {
+        ui->passwordEdit->clear();
+
         return;
     }
 
@@ -127,4 +133,12 @@ void AuthorizationWindow::OpenRegistration()
     registerWindow->show();
 
     this->close();
+}
+
+void AuthorizationWindow::TogglePasswordVisibility()
+{
+    const bool isActive = ui->passwordVisibility->isChecked();
+
+    ui->passwordEdit->setEchoMode((isActive) ?
+        (QLineEdit::Normal) : (QLineEdit::Password));
 }

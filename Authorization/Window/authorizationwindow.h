@@ -2,6 +2,7 @@
 #define AUTHORIZATIONWINDOW_H
 
 #include <QMainWindow>
+
 #include "Authorization/FieldCheck/FieldChecker.hpp"
 
 namespace Ui {
@@ -20,6 +21,8 @@ private slots:
     void AcceptData();
 
     void OpenRegistration();
+
+    void TogglePasswordVisibility();
 
 private:
     Ui::AuthorizationWindow *ui;

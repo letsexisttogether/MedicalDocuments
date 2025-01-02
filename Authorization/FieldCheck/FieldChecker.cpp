@@ -1,6 +1,7 @@
 #include "FieldChecker.hpp"
 
 #include <QDebug>
+#include <QTimer>
 
 FieldChecker::FieldChecker(QLabel* const errorLabel)
     : m_ErrorLabel{ errorLabel }
@@ -21,7 +22,9 @@ bool FieldChecker::CheckField(const QString password)
             if (m_ErrorLabel)
             {
                 m_ErrorLabel->setText(condition.GetMessage());
+
                 m_ErrorLabel->show();
+                QTimer::singleShot(3000, m_ErrorLabel, &QLabel::hide);
             }
 
             return false;
