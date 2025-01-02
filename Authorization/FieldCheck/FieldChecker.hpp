@@ -1,7 +1,8 @@
-#ifndef PASSWORDCHECKER_HPP
-#define PASSWORDCHECKER_HPP
+#ifndef FIELDCHECKER_HPP
+#define FIELDCHECKER_HPP
 
 #include <QVector>
+#include <QLabel>
 
 #include "FieldCondition.hpp"
 
@@ -15,7 +16,8 @@ public:
     FieldChecker(const FieldChecker&) = default;
     FieldChecker(FieldChecker&&) = default;
 
-    FieldChecker(const Conditions& conditions);
+    FieldChecker(QLabel* const errorLabel);
+    FieldChecker(const Conditions& conditions, QLabel* const errorLabel);
 
     ~FieldChecker() = default;
 
@@ -23,8 +25,11 @@ public:
 
     void AddCondition(FieldCondition&& condition);
 
+    void SetErrorLabel(QLabel* const errorLabel) noexcept;
+
 private:
     Conditions m_Conditions{};
+    QLabel* m_ErrorLabel{};
 };
 
-#endif // PASSWORDCHECKER_HPP
+#endif // FIELDCHECKER_HPP

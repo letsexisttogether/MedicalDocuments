@@ -2,8 +2,13 @@
 
 #include <QDebug>
 
-FieldChecker::FieldChecker(const Conditions& conditions)
-    : m_Conditions{ conditions }
+FieldChecker::FieldChecker(QLabel* const errorLabel)
+    : m_ErrorLabel{ errorLabel }
+{}
+
+FieldChecker::FieldChecker(const Conditions& conditions,
+    QLabel* const errorLabel)
+    : m_Conditions{ conditions }, m_ErrorLabel{ errorLabel }
 {}
 
 bool FieldChecker::CheckField(const QString password)
@@ -13,7 +18,11 @@ bool FieldChecker::CheckField(const QString password)
     {
         if (!condition.Check(password))
         {
-            qDebug() << condition.GetMessage();
+            if (m_ErrorLabel)
+            {
+                m_ErrorLabel->setText(condition.GetMessage());
+                m_ErrorLabel->show();
+            }
 
             return false;
         }
@@ -25,4 +34,9 @@ bool FieldChecker::CheckField(const QString password)
 void FieldChecker::AddCondition(FieldCondition&& condition)
 {
     m_Conditions.append(std::move(condition));
+}
+
+void FieldChecker::SetErrorLabel(QLabel* const errorLabel) noexcept
+{
+    m_ErrorLabel = errorLabel;
 }
