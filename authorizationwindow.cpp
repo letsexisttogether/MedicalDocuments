@@ -64,6 +64,24 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
         }
     };
     m_PasswordChecker.AddCondition(std::move(specialChar));
+
+    // Email фігня
+
+    FieldCondition emailFormat
+    {
+        //"Email повинен бути наступного вигляду: example25@gmail.com"
+        "Invalid email format",
+        [] (const QString& email)
+        {
+            QRegularExpression emailRegex
+            {
+                R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})"
+            };
+
+            return emailRegex.match(email).hasMatch();
+        }
+    };
+    m_EmailChecker.AddCondition(std::move(emailFormat));
 }
 
 AuthorizationWindow::~AuthorizationWindow()
@@ -73,8 +91,14 @@ AuthorizationWindow::~AuthorizationWindow()
 
 void AuthorizationWindow::AcceptData()
 {
+    const QString email{ ui->idEdit->text() };
+    if (!m_EmailChecker.CheckField(email))
+    {
+        return;
+    }
+
     const QString password{ ui->passwordEdit->text() };
-    if (!m_PasswordChecker.CheckPassword(password))
+    if (!m_PasswordChecker.CheckField(password))
     {
         return;
     }

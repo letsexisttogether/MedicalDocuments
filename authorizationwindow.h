@@ -26,6 +26,7 @@ private:
     bool isDoctor = true; //тестова фігня потім буде зчитуватися з бази даних
 
     FieldChecker m_PasswordChecker{};
+    FieldChecker m_EmailChecker{};
 };
 
 #endif // AUTHORIZATIONWINDOW_H

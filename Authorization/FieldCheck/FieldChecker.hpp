@@ -19,7 +19,7 @@ public:
 
     ~FieldChecker() = default;
 
-    bool CheckPassword(const QString password) noexcept;
+    bool CheckField(const QString password) noexcept;
 
     void AddCondition(FieldCondition&& condition);
 

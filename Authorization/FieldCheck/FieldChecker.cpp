@@ -6,7 +6,7 @@ FieldChecker::FieldChecker(const Conditions& conditions)
     : m_Conditions{ conditions }
 {}
 
-bool FieldChecker::CheckPassword(const QString password)
+bool FieldChecker::CheckField(const QString password)
     noexcept
 {
     for (const FieldCondition& condition : m_Conditions)
