@@ -36,7 +36,6 @@
 *.app
 
 ### Qt ###
-# C++ objects and libs
 *.so.*
 
 # Qt-es
