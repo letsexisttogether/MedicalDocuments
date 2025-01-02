@@ -19,17 +19,23 @@ set(PROJECT_SOURCES
         mainwindow.ui
 )
 
+set(AUTHORIZATION_SOURCES
+	Authorization/Window/authorizationwindow.h
+	Authorization/Window/authorizationwindow.cpp
+	Authorization/Window/authorizationwindow.ui
+	Authorization/FieldCheck/FieldChecker.hpp Authorization/FieldCheck/FieldChecker.cpp
+	Authorization/FieldCheck/FieldCondition.hpp Authorization/FieldCheck/FieldCondition.cpp
+)
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MedicalDocuments
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        appointmentwindow.h appointmentwindow.cpp appointmentwindow.ui
-        authorizationwindow.h authorizationwindow.cpp authorizationwindow.ui
+        appointmentwindow.h appointmentwindow.cpp appointmentwindow.ui  
         registerwindow.h registerwindow.cpp registerwindow.ui
         doctorclientwindow.h doctorclientwindow.cpp doctorclientwindow.ui
         redactwindow.h redactwindow.cpp redactwindow.ui
-		Authorization/FieldCheck/FieldChecker.hpp Authorization/FieldCheck/FieldChecker.cpp
-		Authorization/FieldCheck/FieldCondition.hpp Authorization/FieldCheck/FieldCondition.cpp
+		${AUTHORIZATION_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MedicalDocuments APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -75,3 +81,5 @@ install(TARGETS MedicalDocuments
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(MedicalDocuments)
 endif()
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,6 +1,6 @@
 #include "registerwindow.h"
 #include "ui_registerwindow.h"
-#include "authorizationwindow.h"
+#include "Authorization/Window/authorizationwindow.h"
 
 RegisterWindow::RegisterWindow(QWidget *parent)
     : QMainWindow(parent)
