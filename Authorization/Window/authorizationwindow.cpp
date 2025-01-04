@@ -6,6 +6,7 @@
 #include "mainwindow.h"
 #include "registerwindow.h"
 #include "doctorclientwindow.h"
+#include "SQL/Manager/SQLManager.hpp"
 
 AuthorizationWindow::AuthorizationWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::AuthorizationWindow)
@@ -85,6 +86,11 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
         }
     };
     m_EmailChecker.AddCondition(std::move(emailFormat));
+
+
+    // SQL фігня
+
+    SQLManager manager{ "QODBC", "ALEXMACHINE", "MedicalDocuments" };
 }
 
 AuthorizationWindow::~AuthorizationWindow()

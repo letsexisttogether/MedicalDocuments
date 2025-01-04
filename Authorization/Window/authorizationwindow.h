@@ -5,8 +5,9 @@
 
 #include "Authorization/FieldCheck/FieldChecker.hpp"
 
-namespace Ui {
-class AuthorizationWindow;
+namespace Ui
+{
+    class AuthorizationWindow;
 }
 
 class AuthorizationWindow : public QMainWindow
