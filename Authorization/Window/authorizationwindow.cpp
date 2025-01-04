@@ -86,11 +86,6 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
         }
     };
     m_EmailChecker.AddCondition(std::move(emailFormat));
-
-
-    // SQL фігня
-
-    SQLManager manager{ "QODBC", "ALEXMACHINE", "MedicalDocuments" };
 }
 
 AuthorizationWindow::~AuthorizationWindow()

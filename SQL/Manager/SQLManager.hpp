@@ -7,16 +7,30 @@
 class SQLManager
 {
 public:
-    SQLManager();
+    static void Init(const QString& driver, const QString& serverName,
+        const QString& dbName) noexcept;
+
+    static SQLManager& GetInstance() noexcept;
+
+private:
+    SQLManager() = delete;
+    SQLManager(const SQLManager&) = delete;
+    SQLManager(SQLManager&&) = delete;
+
     SQLManager(const QString& driver, const QString& serverName,
         const QString& dbName);
 
     ~SQLManager();
 
-private:
+    SQLManager& operator = (const SQLManager&) noexcept = delete;
+    SQLManager& operator = (SQLManager&&) noexcept = delete;
+
     void TryConnect() noexcept;
 
-    void CheckConnection(const bool printError = false) const noexcept;
+    bool CheckConnection(const bool printError = false) const noexcept;
+
+private:
+    inline static SQLManager* m_Instance{};
 
 private:
     QSqlDatabase m_DB{};
