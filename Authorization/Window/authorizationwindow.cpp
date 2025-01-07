@@ -95,6 +95,24 @@ AuthorizationWindow::~AuthorizationWindow()
 
 void AuthorizationWindow::AcceptData()
 {
+    // SQL test фігня
+    SQLManager& manager{ SQLManager::GetInstance() };
+
+    const QString query
+    {
+        "SELECT (FirstName + ' ' + SecondName + ' ' + LastName) as Name "
+        "FROM People"
+    };
+    QList<TableRecord> data{ manager.ReadTableData(query) };
+
+    if (!data.isEmpty())
+    {
+        const TableRecord& person{ data.first() };
+        const QString& name{ person.GetColumnValue("Name").toString() };
+
+        ui->personName->setText(name);
+    }
+
     const QString email{ ui->idEdit->text() };
     if (!m_EmailChecker.CheckField(email))
     {

@@ -1,6 +1,8 @@
 #include "SQLManager.hpp"
 
 #include <QStringLiteral>
+#include <QSqlQuery>
+#include <QSqlRecord>
 #include <QSqlError>
 #include <QDebug>
 
@@ -70,8 +72,28 @@ bool SQLManager::CheckConnection(const bool printError) const noexcept
 
     if (printError)
     {
-        qDebug() << "The last error: " + m_DB.lastError().text();
+        qDebug() << "The last error:" << m_DB.lastError().text();
     }
 
     return false;
+}
+
+QList<TableRecord> SQLManager::ReadTableData(const QString& query) noexcept
+{
+    QList<TableRecord> data{};
+
+    QSqlQuery sqlQuery{ m_DB };
+
+    if (!sqlQuery.exec(query))
+    {
+        qDebug() << "Query was not executed. The last error:"
+            << sqlQuery.lastError().text();
+    }
+
+    while (sqlQuery.next())
+    {
+        data.append(TableRecord{ sqlQuery.record() });
+    }
+
+    return data;
 }

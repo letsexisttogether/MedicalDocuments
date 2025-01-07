@@ -3,6 +3,9 @@
 
 #include <QString>
 #include <QSqlDatabase>
+#include <QList>
+
+#include "SQL/TableRecords/TableRecord.hpp"
 
 class SQLManager
 {
@@ -11,6 +14,9 @@ public:
         const QString& dbName) noexcept;
 
     static SQLManager& GetInstance() noexcept;
+
+public:
+    QList<TableRecord> ReadTableData(const QString& query) noexcept;
 
 private:
     SQLManager() = delete;
@@ -26,8 +32,7 @@ private:
     SQLManager& operator = (SQLManager&&) noexcept = delete;
 
     void TryConnect() noexcept;
-
-    bool CheckConnection(const bool printError = false) const noexcept;
+    bool CheckConnection(const bool printError = false) const noexcept;    
 
 private:
     inline static SQLManager* m_Instance{};
