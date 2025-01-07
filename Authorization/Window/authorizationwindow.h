@@ -26,11 +26,11 @@ private slots:
     void TogglePasswordVisibility();
 
 private:
-    Ui::AuthorizationWindow *ui;
-    bool isDoctor = true; //тестова фігня потім буде зчитуватися з бази даних
 
-    FieldChecker m_PasswordChecker{};
-    FieldChecker m_EmailChecker{};
+
+private:
+    Ui::AuthorizationWindow *ui;
+    bool isDoctor = false; //тестова фігня потім буде зчитуватися з бази даних
 };
 
 #endif // AUTHORIZATIONWINDOW_H

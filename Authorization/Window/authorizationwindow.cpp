@@ -8,6 +8,9 @@
 #include "doctorclientwindow.h"
 #include "SQL/Manager/SQLManager.hpp"
 
+#include "Authorization/FieldCheck/DefaultCheckers/DefaultPassowordChecker.hpp"
+#include "Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp"
+
 AuthorizationWindow::AuthorizationWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::AuthorizationWindow)
 {
@@ -20,72 +23,13 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
     connect(ui->passwordVisibility, &QCheckBox::checkStateChanged, this,
         &AuthorizationWindow::TogglePasswordVisibility);
 
-    // Password фігня
+    ui->email->SetName("Пошта");
+    ui->email->SetChecker(new DefaultEmailChecker{});
 
-    m_PasswordChecker.SetErrorLabel(ui->errorLabel);
 
-    FieldCondition length
-    {
-        "Пароль повинен мати не менше 8 та не більше 64 знаків",
-        [] (const QString& password)
-        {
-            const qsizetype length = password.length();
-            return length >= 8 && length <= 64;
-        }
-    };
-    m_PasswordChecker.AddCondition(std::move(length));
-
-    FieldCondition uppercase
-    {
-        "Пароль повинен містити хоча б одну велику літеру",
-        [] (const QString& password)
-        {
-            return password.contains(QRegularExpression{ "[A-Z]" });
-        }
-    };
-    m_PasswordChecker.AddCondition(std::move(uppercase));
-
-    FieldCondition digit
-    {
-        "Пароль повинен містити хоча б одну цифру",
-        [] (const QString& password)
-        {
-            return password.contains(QRegularExpression{ "[0-9]" });
-        }
-    };
-    m_PasswordChecker.AddCondition(std::move(digit));
-
-    FieldCondition specialChar
-    {
-        "Пароль повинен містити хоча б один спеціальний символ",
-        [] (const QString& password)
-        {
-            return password.contains(QRegularExpression
-            {
-                "[!@#$%^&*(),.?\":{}|<>-]"
-            });
-        }
-    };
-    m_PasswordChecker.AddCondition(std::move(specialChar));
-
-    // Email фігня
-
-    m_EmailChecker.SetErrorLabel(ui->errorLabel);
-
-    FieldCondition emailFormat
-    {
-        "Email повинен бути наступного вигляду: example25@gmail.com",
-        [] (const QString& email)
-        {
-            QRegularExpression emailRegex
-            {
-                R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})"
-            };
-
-            return emailRegex.match(email).hasMatch();
-        }
-    };
-    m_EmailChecker.AddCondition(std::move(emailFormat));
+    ui->password->SetName("Пароль");
+    ui->password->SetChecker(new DefaultPassowordChecker{});
+    ui->password->SetEchoMode(QLineEdit::Password);
 }
 
 AuthorizationWindow::~AuthorizationWindow()
@@ -95,37 +39,61 @@ AuthorizationWindow::~AuthorizationWindow()
 
 void AuthorizationWindow::AcceptData()
 {
+    if (!ui->email->CheckEdit())
+    {
+        return;
+    }
+
+    if (!ui->password->CheckEdit())
+    {
+        ui->password->ClearEditValue();
+
+        return;
+    }
+
+    /*
     // SQL test фігня
     SQLManager& manager{ SQLManager::GetInstance() };
 
     const QString query
     {
-        "SELECT (FirstName + ' ' + SecondName + ' ' + LastName) as Name "
-        "FROM People"
+        QString("SELECT Patients.Email, Passwords.Encrypted "
+        "FROM Patients "
+        "JOIN Passwords ON Patients.PasswordID = Passwords.ID "
+        "WHERE Patients.Email = '%1'").arg(email)
     };
+
     QList<TableRecord> data{ manager.ReadTableData(query) };
 
-    if (!data.isEmpty())
+    if (data.isEmpty())
     {
-        const TableRecord& person{ data.first() };
-        const QString& name{ person.GetColumnValue("Name").toString() };
-
-        ui->personName->setText(name);
-    }
-
-    const QString email{ ui->idEdit->text() };
-    if (!m_EmailChecker.CheckField(email))
-    {
-        return;
-    }
-
-    const QString password{ ui->passwordEdit->text() };
-    if (!m_PasswordChecker.CheckField(password))
-    {
-        ui->passwordEdit->clear();
+        qDebug() << "There's no such data";
 
         return;
     }
+    const TableRecord& person{ data.first() };
+
+    const QString recordEmail
+    {
+        person.GetColumnValue("Email").toString()
+    };
+    if (recordEmail != email)
+    {
+        qDebug() << "The email do not match";
+    }
+
+    const QString recordPassword
+    {
+        person.GetColumnValue("Encrypted").toString()
+    };
+    if (recordPassword != password)
+    {
+        qDebug() << "The password do not match";
+
+        return;
+    }
+
+    */
 
     if(!isDoctor) //тестова фігня
     {
@@ -158,6 +126,6 @@ void AuthorizationWindow::TogglePasswordVisibility()
 {
     const bool isActive = ui->passwordVisibility->isChecked();
 
-    ui->passwordEdit->setEchoMode((isActive) ?
+    ui->password->SetEchoMode((isActive) ?
         (QLineEdit::Normal) : (QLineEdit::Password));
 }

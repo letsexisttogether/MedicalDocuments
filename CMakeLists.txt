@@ -23,13 +23,23 @@ set(AUTHORIZATION_SOURCES
 	Authorization/Window/authorizationwindow.h
 	Authorization/Window/authorizationwindow.cpp
 	Authorization/Window/authorizationwindow.ui
+
+	Authorization/CustomField/CustomField.hpp
+	Authorization/CustomField/CustomField.cpp
+	Authorization/CustomField/CustomField.ui
+
 	Authorization/FieldCheck/FieldChecker.hpp Authorization/FieldCheck/FieldChecker.cpp
 	Authorization/FieldCheck/FieldCondition.hpp Authorization/FieldCheck/FieldCondition.cpp
+
+	Authorization/FieldCheck/DefaultCheckers/DefaultPassowordChecker.hpp
+	Authorization/FieldCheck/DefaultCheckers/DefaultPassowordChecker.cpp
+	Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp
+	Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.cpp
 )
 
 set(SQL_SOURCES
 	SQL/Manager/SQLManager.hpp SQL/Manager/SQLManager.cpp
-	SQL/TableRecords/TableRecord.hpp SQL/TableRecords/TableRecord.cpp
+	SQL/TableRecord/TableRecord.hpp SQL/TableRecord/TableRecord.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

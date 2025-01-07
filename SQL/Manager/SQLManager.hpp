@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 #include <QList>
 
-#include "SQL/TableRecords/TableRecord.hpp"
+#include "SQL/TableRecord/TableRecord.hpp"
 
 class SQLManager
 {
