@@ -19,7 +19,7 @@ public:
     FieldChecker(QLabel* const errorLabel);
     FieldChecker(const Conditions& conditions, QLabel* const errorLabel);
 
-    ~FieldChecker() = default;
+    virtual ~FieldChecker() = default;
 
     bool CheckField(const QString password) noexcept;
 

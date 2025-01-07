@@ -21,7 +21,7 @@ public:
 
     bool Check(const QString& password) const noexcept;
 
-    QString GetMessage() const noexcept;
+    const QString& GetMessage() const noexcept;
     void SetMessage(QString&& message) noexcept;
 
     FieldCondition& operator = (const FieldCondition&) noexcept = default;

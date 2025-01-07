@@ -13,7 +13,7 @@ bool FieldCondition::Check(const QString& password) const noexcept
     return m_Condition(password);
 }
 
-QString FieldCondition::GetMessage() const noexcept
+const QString& FieldCondition::GetMessage() const noexcept
 {
     return m_Message;
 }
