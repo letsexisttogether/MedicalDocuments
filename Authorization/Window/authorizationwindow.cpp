@@ -34,18 +34,16 @@ AuthorizationWindow::~AuthorizationWindow()
 
 void AuthorizationWindow::SwitchToPatientWindow()
 {
-    DoctorClientWindow *doctorClientWindow = new DoctorClientWindow();
-
-    doctorClientWindow->show();
+    MainWindow *window = new MainWindow();
+    window->show();
 
     this->close();
 }
 
 void AuthorizationWindow::SwitchToDoctorWindow()
 {
-    MainWindow *mainWindow = new MainWindow();
-
-    mainWindow->show();
+    DoctorClientWindow *window = new DoctorClientWindow();
+    window->show();
 
     this->close();
 }

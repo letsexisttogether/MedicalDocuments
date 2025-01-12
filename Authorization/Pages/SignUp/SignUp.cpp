@@ -29,10 +29,6 @@ SignUp::SignUp(QWidget *parent)
         }
     });
 
-    ui->firstName->SetName("Ім'я");
-    ui->secondName->SetName("Прізвище");
-    ui->thirdName->SetName("По батькові");
-
     ui->email->SetName("Пошта (логін)");
     ui->email->SetChecker(new DefaultEmailChecker{});
 
@@ -88,9 +84,9 @@ SQLManager::ID SignUp::AddPerson() const noexcept
 {
     SQLManager& manager{ SQLManager::GetInstance() };
 
-    const QString firstName{ ui->firstName->GetEditValue() };
-    const QString secondName{ ui->secondName->GetEditValue() };
-    const QString thirdName{ ui->thirdName->GetEditValue() };
+    const QString firstName{ ui->firstName->text() };
+    const QString secondName{ ui->secondName->text() };
+    const QString thirdName{ ui->thirdName->text() };
 
     const qint16 isMale = (ui->maleRadioButton->isChecked());
 
@@ -135,8 +131,9 @@ SQLManager::ID SignUp::AddPatient(const SQLManager::ID personID,
 
     const QString email{ ui->email->GetEditValue() };
 
-    const QString phoneNumber{ "+380667615115" };
-    const QString address{ "м. Київ, п-р. Оболонський, д. 28б, кв. 15 "};
+    const QString phoneNumber{ ui->phoneNumber->text() };
+
+    const QString address{ ui->address->text() };
 
     const QString query
     {
