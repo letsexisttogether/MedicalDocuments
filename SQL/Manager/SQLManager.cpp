@@ -97,3 +97,18 @@ QList<TableRecord> SQLManager::ReadTableData(const QString& query) noexcept
 
     return data;
 }
+
+void SQLManager::InsertDataToTable(const QString& query) noexcept
+{
+    QSqlQuery sqlQuery{ m_DB };
+
+    if (!sqlQuery.exec(query))
+    {
+        qDebug() << "Insert query failed. The last error:"
+                 << sqlQuery.lastError().text();
+    }
+    else
+    {
+        qDebug() << "Data inserted successfully.";
+    }
+}

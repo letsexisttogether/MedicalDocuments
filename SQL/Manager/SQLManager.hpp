@@ -18,6 +18,11 @@ public:
 public:
     QList<TableRecord> ReadTableData(const QString& query) noexcept;
 
+    void InsertDataToTable(const QString& query) noexcept;
+
+    // TODO: Implement when the time comes (probably never)
+    // void InsertDataToTable(const QString& tableName, TableRecord&& record) noexcept;
+
 private:
     SQLManager() = delete;
     SQLManager(const SQLManager&) = delete;
