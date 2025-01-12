@@ -3,12 +3,12 @@
 
 #include "Authorization/FieldCheck/FieldChecker.hpp"
 
-class DefaultPassowordChecker : public FieldChecker
+class DefaultPasswordChecker : public FieldChecker
 {
 public:
-    DefaultPassowordChecker();
+    DefaultPasswordChecker();
 
-    ~DefaultPassowordChecker() = default;
+    ~DefaultPasswordChecker() = default;
 };
 
 #endif // DEFAULTPASSOWORDCHECKER_HPP

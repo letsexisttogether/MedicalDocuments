@@ -2,7 +2,7 @@
 
 #include <QRegularExpression>
 
-DefaultPassowordChecker::DefaultPassowordChecker()
+DefaultPasswordChecker::DefaultPasswordChecker()
 {
     FieldCondition length
     {
