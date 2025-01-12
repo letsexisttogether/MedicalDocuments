@@ -1,4 +1,4 @@
-#include "DefaultPassowordChecker.hpp"
+#include "DefaultPasswordChecker.hpp"
 
 #include <QRegularExpression>
 

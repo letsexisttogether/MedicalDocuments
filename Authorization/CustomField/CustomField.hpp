@@ -30,6 +30,8 @@ public:
 
     void SetEchoMode(const QLineEdit::EchoMode echoMode) noexcept;
 
+    void SetErrorMessage(const QString& message) noexcept;
+
     void SetChecker(FieldChecker* const editChecker) noexcept;
 
 protected:

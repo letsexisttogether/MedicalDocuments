@@ -98,17 +98,23 @@ QList<TableRecord> SQLManager::ReadTableData(const QString& query) noexcept
     return data;
 }
 
-void SQLManager::InsertDataToTable(const QString& query) noexcept
+SQLManager::ID SQLManager::InsertDataToTable(const QString& query) noexcept
 {
     QSqlQuery sqlQuery{ m_DB };
 
     if (!sqlQuery.exec(query))
     {
-        qDebug() << "Insert query failed. The last error:"
-                 << sqlQuery.lastError().text();
+        qDebug() << "Query was not executed. The last error:"
+            << sqlQuery.lastError().text();
+
+        return 0;
     }
-    else
+
+    const QVariant lastInsertId{ sqlQuery.lastInsertId() };
+    if (lastInsertId.isValid() && lastInsertId.canConvert<ID>())
     {
-        qDebug() << "Data inserted successfully.";
+        return lastInsertId.toInt();
     }
+
+    return 0;
 }

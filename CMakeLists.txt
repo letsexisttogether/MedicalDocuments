@@ -31,10 +31,18 @@ set(AUTHORIZATION_SOURCES
 	Authorization/FieldCheck/FieldChecker.hpp Authorization/FieldCheck/FieldChecker.cpp
 	Authorization/FieldCheck/FieldCondition.hpp Authorization/FieldCheck/FieldCondition.cpp
 
-	Authorization/FieldCheck/DefaultCheckers/DefaultPassowordChecker.hpp
-	Authorization/FieldCheck/DefaultCheckers/DefaultPassowordChecker.cpp
+	Authorization/FieldCheck/DefaultCheckers/DefaultPasswordChecker.hpp
+	Authorization/FieldCheck/DefaultCheckers/DefaultPasswordChecker.cpp
 	Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp
 	Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.cpp
+
+	Authorization/Pages/Login/Login.hpp
+	Authorization/Pages/Login/Login.cpp
+	Authorization/Pages/Login/Login.ui
+
+	Authorization/Pages/SignUp/SignUp.hpp
+	Authorization/Pages/SignUp/SignUp.cpp
+	Authorization/Pages/SignUp/SignUp.ui
 )
 
 set(SQL_SOURCES

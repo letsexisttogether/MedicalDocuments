@@ -3,8 +3,6 @@
 
 #include <QMainWindow>
 
-#include "Authorization/FieldCheck/FieldChecker.hpp"
-
 namespace Ui
 {
     class AuthorizationWindow;
@@ -19,17 +17,17 @@ public:
     ~AuthorizationWindow();
 
 private slots:
-    void AcceptData();
+    void SwitchToPatientWindow();
+    void SwitchToDoctorWindow();
 
+    void OpenAuthorization();
     void OpenRegistration();
 
     void TogglePasswordVisibility();
 
 private:
-
-
-private:
     Ui::AuthorizationWindow *ui;
+
     bool isDoctor = false; //тестова фігня потім буде зчитуватися з бази даних
 };
 

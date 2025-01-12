@@ -1,6 +1,8 @@
 #include "CustomField.hpp"
 #include "ui_CustomField.h"
 
+#include <QTimer>
+
 CustomField::CustomField(QWidget *parent)
     : QWidget(parent), ui(new Ui::CustomField)
 {
@@ -44,6 +46,16 @@ void CustomField::ClearEditValue() noexcept
 void CustomField::SetEchoMode(const QLineEdit::EchoMode echoMode) noexcept
 {
     ui->edit->setEchoMode(echoMode);
+}
+
+void CustomField::SetErrorMessage(const QString& message) noexcept
+{
+    QLabel* const errorLabel = ui->errorLabel;
+
+    errorLabel->setText(message);
+
+    errorLabel->show();
+    QTimer::singleShot(3000, errorLabel, &QLabel::hide);
 }
 
 void CustomField::SetChecker(FieldChecker* const editChecker) noexcept

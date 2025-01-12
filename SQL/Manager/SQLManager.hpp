@@ -10,6 +10,9 @@
 class SQLManager
 {
 public:
+    using ID = qint64;
+
+public:
     static void Init(const QString& driver, const QString& serverName,
         const QString& dbName) noexcept;
 
@@ -18,7 +21,7 @@ public:
 public:
     QList<TableRecord> ReadTableData(const QString& query) noexcept;
 
-    void InsertDataToTable(const QString& query) noexcept;
+    ID InsertDataToTable(const QString& query) noexcept;
 
     // TODO: Implement when the time comes (probably never)
     // void InsertDataToTable(const QString& tableName, TableRecord&& record) noexcept;
