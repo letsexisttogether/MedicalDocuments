@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "SQL/Manager/SQLManager.hpp"
+
 namespace Ui
 {
     class Login;
@@ -16,6 +18,8 @@ public:
     explicit Login(QWidget *parent = nullptr);
 
     ~Login();
+
+    SQLManager::ID GetCurrentAccountID() const noexcept;
 
 signals:
     void PatientLoginClicked();
@@ -33,6 +37,8 @@ private:
 
 private:
     Ui::Login* ui;
+
+    SQLManager::ID m_CurrentAccountID{};
 };
 
 #endif // DOCTORLOGIN_HPP

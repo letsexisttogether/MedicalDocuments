@@ -3,8 +3,9 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class DoctorClientWindow;
+namespace Ui
+{
+    class DoctorClientWindow;
 }
 
 class DoctorClientWindow : public QMainWindow

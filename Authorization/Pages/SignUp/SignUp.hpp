@@ -2,6 +2,8 @@
 #define SIGNUP_HPP
 
 #include <QWidget>
+#include <optional>
+
 #include "SQL/Manager/SQLManager.hpp"
 
 namespace Ui

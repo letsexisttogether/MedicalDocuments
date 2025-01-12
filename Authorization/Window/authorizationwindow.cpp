@@ -34,7 +34,11 @@ AuthorizationWindow::~AuthorizationWindow()
 
 void AuthorizationWindow::SwitchToPatientWindow()
 {
-    MainWindow *window = new MainWindow();
+    MainWindow *window = new MainWindow
+    {
+        ui->authorizationWidget->GetCurrentAccountID()
+    };
+
     window->show();
 
     this->close();

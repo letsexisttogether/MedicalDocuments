@@ -28,6 +28,12 @@ Login::~Login()
     delete ui;
 }
 
+
+SQLManager::ID Login::GetCurrentAccountID() const noexcept
+{
+    return m_CurrentAccountID;
+}
+
 void Login::HandleLoginClick()
 {
     if (!IsDoctor() && !ui->login->CheckEdit())
@@ -52,7 +58,6 @@ void Login::HandleLoginClick()
     }
 }
 
-
 void Login::HandleRegistrationClick()
 {
     emit RegistrationClicked();
@@ -64,11 +69,11 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
 
     const QString query
     {
-        QString("SELECT %1.%2, Passwords.Encrypted "
-        "FROM %1 "
-        "JOIN Passwords ON %1.PasswordID = Passwords.ID "
-        "WHERE %1.%2 = '%3'")
-            .arg(table, column, ui->login->GetEditValue())
+        QString("SELECT %1.ID, %1.%2, Passwords.Encrypted "
+            "FROM %1 "
+            "JOIN Passwords ON %1.PasswordID = Passwords.ID "
+            "WHERE %1.%2 = '%3'")
+        .arg(table, column, ui->login->GetEditValue())
     };
 
     qDebug() << query;
@@ -78,6 +83,8 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
     if (data.isEmpty())
     {
         qDebug() << "There's no such data";
+
+        m_CurrentAccountID = SQLManager::ID{};
 
         return false;
     }
@@ -92,8 +99,12 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
         ui->password->SetErrorMessage("Введений пароль не є правильним");
         ui->password->ClearEditValue();
 
+        m_CurrentAccountID = SQLManager::ID{};
+
         return false;
     }
+
+    m_CurrentAccountID = person.GetColumnValue("ID").toInt();
 
     return true;
 }

@@ -2,13 +2,14 @@
 #include "./ui_mainwindow.h"
 #include "appointmentwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(const SQLManager::ID ID, QWidget *parent)
+    : m_AccountID{ ID }, QMainWindow(parent), ui{ new Ui::MainWindow }
 {
     ui->setupUi(this);
 
-    connect(ui->openAppointmentWindowButton, &QPushButton::clicked, this, &MainWindow::openAppointmentWindow);
+    LoadBIO();
+
+    qDebug() << "The account ID: " << m_AccountID;
 
     QWidget *scrollWidget = ui->scrollArea->widget();
     QVBoxLayout *scrollLayout = qobject_cast<QVBoxLayout *>(scrollWidget->layout());
@@ -41,7 +42,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::openAppointmentWindow()
+void MainWindow::OpenAppointmentWindow()
 {
     AppointmentWindow *appointmentWindow = new AppointmentWindow();
 
@@ -50,4 +51,36 @@ void MainWindow::openAppointmentWindow()
 
     // Закриваємо перше вікно
     this->close();
+}
+
+void MainWindow::LoadBIO() noexcept
+{
+    SQLManager& manager{ SQLManager::GetInstance() };
+
+    const QString bioColumnName{ "BIO"};
+
+    const QString query
+    {
+        QString("SELECT (People.FirstName + ' ' + People.SecondName + "
+            "' ' + People.LastName) AS %1 "
+            "FROM Patients JOIN People "
+            "ON Patients.PersonID = People.ID "
+            "WHERE Patients.ID = %2")
+        .arg(bioColumnName)
+        .arg(m_AccountID)
+    };
+
+    QList<TableRecord> data{ manager.ReadTableData(query) };
+
+    if (data.isEmpty())
+    {
+        qDebug() << "There's no such data";
+
+        return;
+    }
+    const TableRecord& person{ data.first() };
+
+    const QString bio{ person.GetColumnValue(bioColumnName).toString() };
+
+    ui->bio->setText(bio);
 }
