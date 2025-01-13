@@ -50,16 +50,22 @@ void Login::HandleLoginClick()
 
     if (IsDoctor() && CheckLogin("Doctors", "SpecialCode"))
     {
+        ResetEditFields();
+
         emit DoctorLoginClicked();
     }
     else if (CheckLogin("Patients", "Email"))
     {
+        ResetEditFields();
+
         emit PatientLoginClicked();
     }
 }
 
 void Login::HandleRegistrationClick()
 {
+    ResetEditFields();
+
     emit RegistrationClicked();
 }
 
@@ -121,6 +127,14 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
     m_CurrentAccountID = person.GetColumnValue("ID").toInt();
 
     return true;
+}
+
+void Login::ResetEditFields() noexcept
+{
+    ui->login->ClearEditValue();
+    ui->password->ClearEditValue();
+
+    ui->doctorCheckBox->setChecked(false);
 }
 
 bool Login::IsDoctor() const noexcept

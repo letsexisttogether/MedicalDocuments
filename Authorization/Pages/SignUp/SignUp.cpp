@@ -1,6 +1,8 @@
 #include "SignUp.hpp"
 #include "ui_SignUp.h"
 
+#include <QCalendar>
+
 #include "Authorization/FieldCheck/DefaultCheckers/DefaultPasswordChecker.hpp"
 #include "Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp"
 
@@ -35,6 +37,8 @@ SignUp::SignUp(QWidget *parent)
     ui->password->SetName("Пароль");
     ui->password->SetChecker(new DefaultPasswordChecker{});
     ui->password->SetEchoMode(QLineEdit::Password);
+
+    ResetEditFields();
 }
 
 SignUp::~SignUp()
@@ -72,11 +76,15 @@ void SignUp::HandleRegistrationClick()
         return;
     }
 
+    ResetEditFields();
+
     emit OperationCompleted();
 }
 
 void SignUp::HandleReturnClick()
 {
+    ResetEditFields();
+
     emit OperationCompleted();
 }
 
@@ -149,4 +157,20 @@ SQLManager::ID SignUp::AddPatient(const SQLManager::ID personID,
     };
 
     return manager.InsertDataToTable(query);
+}
+
+void SignUp::ResetEditFields() noexcept
+{
+    ui->firstName->clear();
+    ui->secondName->clear();
+    ui->thirdName->clear();
+
+    ui->phoneNumber->clear();
+    ui->address->clear();
+
+    ui->email->ClearEditValue();
+    ui->password->ClearEditValue();
+
+    ui->maleRadioButton->setChecked(true);
+    ui->birthdayCalendar->showToday();
 }

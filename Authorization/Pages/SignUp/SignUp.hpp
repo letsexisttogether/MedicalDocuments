@@ -33,6 +33,8 @@ private:
     SQLManager::ID AddPatient(const SQLManager::ID personID,
         const SQLManager::ID passwordID) noexcept;
 
+    void ResetEditFields() noexcept;
+
 private:
     Ui::SignUp *ui;
 
