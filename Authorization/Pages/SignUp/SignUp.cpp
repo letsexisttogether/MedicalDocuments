@@ -93,8 +93,8 @@ SQLManager::ID SignUp::AddPerson() noexcept
     SQLManager& manager{ SQLManager::GetInstance() };
 
     const QString firstName{ ui->firstName->text() };
-    const QString secondName{ ui->secondName->text() };
     const QString lastName{ ui->lastName->text() };
+    const QString patronymic{ ui->patronymic->text() };
 
 
     const qint16 isMale = (ui->maleRadioButton->isChecked());
@@ -104,10 +104,10 @@ SQLManager::ID SignUp::AddPerson() noexcept
 
     const QString query
     {
-        QString("INSERT INTO People (FirstName, SecondName, "
-            "LastName, Gender, BirthdayDate) "
+        QString("INSERT INTO People (FirstName, LastName, "
+            "Patronymic, Gender, Birthdate) "
             "VALUES (N'%1', N'%2', N'%3', %4, '%5');")
-        .arg(firstName, secondName, lastName)
+        .arg(firstName, lastName, patronymic)
         .arg(isMale)
         .arg(birthdayString)
     };
@@ -163,8 +163,8 @@ SQLManager::ID SignUp::AddPatient(const SQLManager::ID personID,
 void SignUp::ResetEditFields() noexcept
 {
     ui->firstName->clear();
-    ui->secondName->clear();
     ui->lastName->clear();
+    ui->patronymic->clear();
 
     ui->phoneNumber->clear();
     ui->address->clear();

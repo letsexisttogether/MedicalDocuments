@@ -60,7 +60,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>ТУТ ТІПА ПІБ</string>
+     <string>НЕВІДОМИЙ</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">

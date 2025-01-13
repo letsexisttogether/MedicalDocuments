@@ -197,6 +197,12 @@
      <pointsize>14</pointsize>
     </font>
    </property>
+   <property name="tabletTracking">
+    <bool>false</bool>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::FocusPolicy::StrongFocus</enum>
+   </property>
    <property name="locale">
     <locale language="Ukrainian" country="Ukraine"/>
    </property>
@@ -222,7 +228,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ім'я&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="secondName">
+  <widget class="QLineEdit" name="patronymic">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -282,7 +288,7 @@
     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="lastNameName">
+  <widget class="QLabel" name="patronymicName">
    <property name="geometry">
     <rect>
      <x>20</x>
