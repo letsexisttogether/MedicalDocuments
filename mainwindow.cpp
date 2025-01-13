@@ -61,8 +61,8 @@ void MainWindow::LoadBIO() noexcept
 
     const QString query
     {
-        QString("SELECT (People.FirstName + ' ' + People.SecondName + "
-            "' ' + People.LastName) AS %1 "
+        QString("SELECT (People.LastName + ' ' + People.FirstName + "
+            "' ' + People.SecondName) AS %1 "
             "FROM Patients JOIN People "
             "ON Patients.PersonID = People.ID "
             "WHERE Patients.ID = %2")

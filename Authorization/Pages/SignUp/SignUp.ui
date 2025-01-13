@@ -197,6 +197,9 @@
      <pointsize>14</pointsize>
     </font>
    </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
+   </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
    </property>
@@ -223,7 +226,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>120</y>
+     <y>170</y>
      <width>301</width>
      <height>41</height>
     </rect>
@@ -232,6 +235,9 @@
     <font>
      <pointsize>14</pointsize>
     </font>
+   </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
@@ -255,11 +261,11 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Прізвище&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="thirdName">
+  <widget class="QLineEdit" name="lastName">
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>170</y>
+     <y>120</y>
      <width>301</width>
      <height>41</height>
     </rect>
@@ -269,11 +275,14 @@
      <pointsize>14</pointsize>
     </font>
    </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
+   </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="thirdNameName">
+  <widget class="QLabel" name="lastNameName">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -304,6 +313,9 @@
     <font>
      <pointsize>14</pointsize>
     </font>
+   </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
@@ -358,6 +370,9 @@
     <font>
      <pointsize>14</pointsize>
     </font>
+   </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
