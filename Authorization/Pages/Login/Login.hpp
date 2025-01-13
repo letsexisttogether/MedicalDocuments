@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "SQL/Manager/SQLManager.hpp"
+#include "Authorization/PasswordEncryption/PasswordEncryptor.hpp"
 
 namespace Ui
 {
@@ -39,6 +40,7 @@ private:
     Ui::Login* ui;
 
     SQLManager::ID m_CurrentAccountID{};
+    PasswordEncryptor m_Encryptor{};
 };
 
 #endif // DOCTORLOGIN_HPP

@@ -69,7 +69,7 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
 
     const QString query
     {
-        QString("SELECT %1.ID, %1.%2, Passwords.Encrypted "
+        QString("SELECT %1.ID, %1.%2, Passwords.Encrypted, Passwords.Salt "
             "FROM %1 "
             "JOIN Passwords ON %1.PasswordID = Passwords.ID "
             "WHERE %1.%2 = '%3'")
@@ -94,7 +94,21 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
     {
         person.GetColumnValue("Encrypted").toString()
     };
-    if (recordPassword != ui->password->GetEditValue())
+    const QString recordSalt
+    {
+        person.GetColumnValue("Salt").toString()
+    };
+
+    const QString enteredPassword
+    {
+        ui->password->GetEditValue()
+    };
+    const QString encryptedPassword
+    {
+        m_Encryptor.Encrypt(ui->password->GetEditValue(), recordSalt)
+    };
+
+    if (recordPassword != encryptedPassword)
     {
         ui->password->SetErrorMessage("Введений пароль не є правильним");
         ui->password->ClearEditValue();

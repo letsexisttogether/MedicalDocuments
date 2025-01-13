@@ -21,8 +21,8 @@ AuthorizationWindow::AuthorizationWindow(QWidget *parent)
     connect(ui->registrationWidget, &SignUp::OperationCompleted, this,
         &AuthorizationWindow::OpenAuthorization);
 
-    ui->authorizationWidget->setGeometry(0, 0, 960, 600);
-    ui->registrationWidget->setGeometry(0, 0, 960, 600);
+    ui->authorizationWidget->setGeometry(0, 0, 960, 550);
+    ui->registrationWidget->setGeometry(0, 0, 960, 550);
 
     OpenAuthorization();
 }

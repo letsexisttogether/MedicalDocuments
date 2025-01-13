@@ -60,6 +60,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         redactwindow.h redactwindow.cpp redactwindow.ui
 		${AUTHORIZATION_SOURCES}
 		${SQL_SOURCES}
+		Authorization/PasswordEncryption/PasswordEncryptor.hpp Authorization/PasswordEncryption/PasswordEncryptor.cpp
 )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MedicalDocuments APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
