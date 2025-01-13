@@ -2,9 +2,9 @@
 #define SIGNUP_HPP
 
 #include <QWidget>
-#include <optional>
 
 #include "SQL/Manager/SQLManager.hpp"
+#include "Authorization/PasswordEncryption/PasswordEncryptor.hpp"
 
 namespace Ui
 {
@@ -28,13 +28,15 @@ private slots:
     void HandleReturnClick();
 
 private:
-    SQLManager::ID AddPerson() const noexcept;
-    SQLManager::ID AddPassword() const noexcept;
+    SQLManager::ID AddPerson() noexcept;
+    SQLManager::ID AddPassword() noexcept;
     SQLManager::ID AddPatient(const SQLManager::ID personID,
-        const SQLManager::ID passwordID) const noexcept;
+        const SQLManager::ID passwordID) noexcept;
 
 private:
     Ui::SignUp *ui;
+
+    PasswordEncryptor m_Encryptor{};
 };
 
 #endif // SIGNUP_HPP

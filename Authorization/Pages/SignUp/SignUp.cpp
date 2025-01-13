@@ -80,7 +80,7 @@ void SignUp::HandleReturnClick()
     emit OperationCompleted();
 }
 
-SQLManager::ID SignUp::AddPerson() const noexcept
+SQLManager::ID SignUp::AddPerson() noexcept
 {
     SQLManager& manager{ SQLManager::GetInstance() };
 
@@ -106,12 +106,14 @@ SQLManager::ID SignUp::AddPerson() const noexcept
     return manager.InsertDataToTable(query);
 }
 
-SQLManager::ID SignUp::AddPassword() const noexcept
+SQLManager::ID SignUp::AddPassword() noexcept
 {
     SQLManager& manager{ SQLManager::GetInstance() };
 
-    const QString password{ ui->password->GetEditValue() };
-    const QString salt{ "Hello " };
+    const QString enteredPassword{ ui->password->GetEditValue() };
+    const QString salt{ m_Encryptor.GenerateSalt() };
+
+    const QString password{ m_Encryptor.Encrypt(enteredPassword, salt) };
 
     const QString query
     {
@@ -125,7 +127,7 @@ SQLManager::ID SignUp::AddPassword() const noexcept
 }
 
 SQLManager::ID SignUp::AddPatient(const SQLManager::ID personID,
-    const SQLManager::ID passwordID) const noexcept
+    const SQLManager::ID passwordID) noexcept
 {
     SQLManager& manager{ SQLManager::GetInstance() };
 
