@@ -8,7 +8,7 @@ PeopleRecord::PeopleRecord(const SQLManager::ID ID)
 
 void PeopleRecord::LoadData() noexcept
 {
-    const TableRecord& person{ LoadRawData() };
+    const TableRecord person{ LoadRawData() };
 
     m_FirstName = person.GetColumnValue("FirstName").toString();
     m_LastName = person.GetColumnValue("LastName").toString();

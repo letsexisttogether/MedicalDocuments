@@ -78,7 +78,7 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
 
     const QString query
     {
-        QString("SELECT %1.PersonID, %1.%2, Passwords.Encrypted, Passwords.Salt "
+        QString("SELECT %1.ID, %1.%2, Passwords.Encrypted, Passwords.Salt "
             "FROM %1 "
             "JOIN Passwords ON %1.PasswordID = Passwords.ID "
             "WHERE %1.%2 = '%3'")
@@ -127,7 +127,7 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
         return false;
     }
 
-    m_CurrentAccountID = person.GetColumnValue("PersonID").toInt();
+    m_CurrentAccountID = person.GetColumnValue("ID").toInt();
 
     return true;
 }

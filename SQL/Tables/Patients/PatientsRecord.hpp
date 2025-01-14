@@ -2,27 +2,42 @@
 #define PATIENTSRECORD_HPP
 
 #include "SQL/Manager/SQLManager.hpp"
+#include "SQL/Tables/DefaultRecord.hpp"
 
-class PatientsRecord
+class PatientsRecord : public DefaultRecord
 {
 public:
-    PatientsRecord();
-    /*
+    PatientsRecord() = delete;
+
     PatientsRecord(const PatientsRecord&) = default;
     PatientsRecord(PatientsRecord&&) = default;
 
-    explicit PatientsRecord(const SQLManager::ID ID);
+    explicit PatientsRecord(const ID ID);
 
     ~PatientsRecord() = default;
 
-    void LoadData() noexcept;
+    ID GetPersonID() const;
 
-    SQLManager::ID GetID() const noexcept;
+    const QString& GetEmail() const;
+    ID GetPasswordID() const;
 
+    const QString& GetPhoneNumber() const;
+    const QString& GetAddress() const;
 
     PatientsRecord& operator = (const PatientsRecord&) noexcept = default;
     PatientsRecord& operator = (PatientsRecord&&) noexcept = default;
-    */
+
+private:
+    void LoadData() noexcept;
+
+private:
+    ID m_PersonID{};
+
+    QString m_Email{};
+    ID m_PasswordID{};
+
+    QString m_PhoneNumber{};
+    QString m_Address{};
 };
 
 #endif // PATIENTSRECORD_HPP

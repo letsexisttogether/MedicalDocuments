@@ -4,7 +4,7 @@
 #include "appointmentwindow.h"
 
 PatientWindow::PatientWindow(const SQLManager::ID ID, QWidget *parent)
-    : QMainWindow(parent), ui{ new Ui::PatientWindow }, m_Person{ ID }
+    : QMainWindow(parent), ui{ new Ui::PatientWindow }, m_Patient{ ID }
 {
     ui->setupUi(this);
 
@@ -54,6 +54,8 @@ void PatientWindow::OpenAppointmentWindow()
 
 void PatientWindow::SetBIO() noexcept
 {
+    PeopleRecord m_Person{ m_Patient.GetPersonID() };
+
     const QString medRecord
     {
         QString::number(m_Person.GetID())

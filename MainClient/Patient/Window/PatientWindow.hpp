@@ -10,6 +10,7 @@
 #include <QWidget>
 
 #include "SQL/Tables/People/PeopleRecord.hpp"
+#include "SQL/Tables/Patients/PatientsRecord.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -36,6 +37,6 @@ private:
 private:
     Ui::PatientWindow *ui;
 
-    PeopleRecord m_Person;
+    PatientsRecord m_Patient;
 };
 #endif // MAINWINDOW_H
