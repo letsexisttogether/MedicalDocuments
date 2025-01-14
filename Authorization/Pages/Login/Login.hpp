@@ -21,7 +21,7 @@ public:
 
     ~Login();
 
-    SQLManager::ID GetCurrentAccountID() const noexcept;
+    DefaultRecord::ID GetCurrentAccountID() const noexcept;
 
 signals:
     void PatientLoginClicked();
@@ -33,8 +33,6 @@ private slots:
     void HandleRegistrationClick();
 
 private:
-    bool CheckLogin(const QString& table, const QString& column) noexcept;
-
     void TryLoginPatient() noexcept;
     void TryLoginDoctor() noexcept;
 

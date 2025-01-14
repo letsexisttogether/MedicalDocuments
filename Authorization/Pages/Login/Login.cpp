@@ -32,8 +32,7 @@ Login::~Login()
     delete ui;
 }
 
-
-SQLManager::ID Login::GetCurrentAccountID() const noexcept
+DefaultRecord::ID Login::GetCurrentAccountID() const noexcept
 {
     return m_CurrentAccountID;
 }
@@ -67,66 +66,6 @@ void Login::HandleRegistrationClick()
     ResetEditFields();
 
     emit RegistrationClicked();
-}
-
-bool Login::CheckLogin(const QString& table, const QString& column) noexcept
-{
-    SQLManager& manager{ SQLManager::GetInstance() };
-
-    const QString query
-    {
-        QString("SELECT %1.ID, %1.%2, Passwords.Encrypted, Passwords.Salt "
-            "FROM %1 "
-            "JOIN Passwords ON %1.PasswordID = Passwords.ID "
-            "WHERE %1.%2 = '%3'")
-        .arg(table, column, ui->login->GetEditValue())
-    };
-
-    qDebug() << query;
-
-    QList<TableRecord> data{ manager.ReadTableData(query) };
-
-    if (data.isEmpty())
-    {
-        qDebug() << "There's no such data";
-
-        m_CurrentAccountID = SQLManager::ID{};
-
-        return false;
-    }
-    const TableRecord& person{ data.first() };
-
-    const QString recordPassword
-    {
-        person.GetColumnValue("Encrypted").toString()
-    };
-    const QString recordSalt
-    {
-        person.GetColumnValue("Salt").toString()
-    };
-
-    const QString enteredPassword
-    {
-        ui->password->GetEditValue()
-    };
-    const QString encryptedPassword
-    {
-        m_Encryptor.Encrypt(ui->password->GetEditValue(), recordSalt)
-    };
-
-    if (recordPassword != encryptedPassword)
-    {
-        ui->password->SetErrorMessage("Введений пароль не є правильним");
-        ui->password->ClearEditValue();
-
-        m_CurrentAccountID = SQLManager::ID{};
-
-        return false;
-    }
-
-    m_CurrentAccountID = person.GetColumnValue("ID").toInt();
-
-    return true;
 }
 
 void Login::TryLoginPatient() noexcept
