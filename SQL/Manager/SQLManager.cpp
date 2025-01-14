@@ -7,9 +7,14 @@
 #include <QDebug>
 
 void SQLManager::Init(const QString& driver, const QString& serverName,
-    const QString& dbName) noexcept
+    const QString& dbName, const QString& username, const QString& password)
+    noexcept
 {
-    m_Instance = new SQLManager{ driver, serverName, dbName };
+    m_Instance = new SQLManager
+    {
+        driver, serverName, dbName,
+        username, password
+    };
 }
 
 SQLManager& SQLManager::GetInstance() noexcept
@@ -23,21 +28,25 @@ SQLManager& SQLManager::GetInstance() noexcept
 }
 
 SQLManager::SQLManager(const QString& driver, const QString& serverName,
-    const QString& dbName)
+    const QString& dbName, const QString& username, const QString& password)
 {
+    // Initialize the database with the given driver
     m_DB = QSqlDatabase::addDatabase(driver);
 
+    // Build the connection string
     const QString connection
     {
-        QStringLiteral("Driver={SQL Server};" "Server=%1;" "Database=%2;")
-            .arg(serverName, dbName)
+        QStringLiteral("Driver={SQL Server};Server=%1;Database=%2;"
+            "UID=%3;PWD=%4;TrustServerCertificate=True;")
+        .arg(serverName, dbName, username, password)
     };
 
+    // Set the connection string
     m_DB.setDatabaseName(connection);
 
+    // Attempt to connect
     TryConnect();
 }
-
 SQLManager::~SQLManager()
 {
     qDebug() << "Closing the connection with" << m_DB.databaseName();

@@ -13,8 +13,8 @@ public:
     using ID = qint64;
 
 public:
-    static void Init(const QString& driver, const QString& serverName,
-        const QString& dbName) noexcept;
+    static void Init(const QString& driver, const QString& serverName, const QString& dbName,
+        const QString& username, const QString& password) noexcept;
 
     static SQLManager& GetInstance() noexcept;
 
@@ -31,8 +31,8 @@ private:
     SQLManager(const SQLManager&) = delete;
     SQLManager(SQLManager&&) = delete;
 
-    SQLManager(const QString& driver, const QString& serverName,
-        const QString& dbName);
+    SQLManager(const QString& driver, const QString& serverName, const QString& dbName,
+        const QString& username, const QString& password);
 
     ~SQLManager();
 

@@ -48,11 +48,14 @@ void Login::HandleLoginClick()
         return;
     }
 
-    if (IsDoctor() && CheckLogin("Doctors", "SpecialCode"))
+    if (IsDoctor())
     {
-        ResetEditFields();
+        if (CheckLogin("Doctors", "SpecialCode"))
+        {
+            ResetEditFields();
 
-        emit DoctorLoginClicked();
+            emit DoctorLoginClicked();
+        }
     }
     else if (CheckLogin("Patients", "Email"))
     {

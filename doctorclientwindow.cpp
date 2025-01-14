@@ -5,8 +5,7 @@
 #include "redactwindow.h"
 
 DoctorClientWindow::DoctorClientWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::DoctorClientWindow)
+    : QMainWindow(parent), ui(new Ui::DoctorClientWindow)
 {
     ui->setupUi(this);
 
