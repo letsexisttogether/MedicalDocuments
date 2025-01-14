@@ -17,8 +17,8 @@ set(SQL_SOURCES
 	${CD}/Tables/Patients/PatientsRecord.hpp
 	${CD}/Tables/Patients/PatientsRecord.cpp
 
-	${CD}/Tables/Passwords/PasswordsTable.hpp
-	${CD}/Tables/Passwords/PasswordsTable.cpp
+	${CD}/Tables/Passwords/PasswordsRecord.hpp
+	${CD}/Tables/Passwords/PasswordsRecord.cpp
 
 	PARENT_SCOPE
 )

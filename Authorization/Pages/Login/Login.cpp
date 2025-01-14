@@ -6,7 +6,7 @@
 #include "Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp"
 
 #include "SQL/Tables/Patients/PatientsRecord.hpp"
-#include "SQL/Tables/Passwords/PasswordsTable.hpp"
+#include "SQL/Tables/Passwords/PasswordsRecord.hpp"
 
 Login::Login(QWidget *parent)
     : QWidget(parent), ui(new Ui::Login)
@@ -175,7 +175,7 @@ bool Login::IsDoctor() const noexcept
 
 bool Login::CheckPasswordMatch(const DefaultRecord::ID ID) noexcept
 {
-    const PasswordsTable password{ ID };
+    const PasswordsRecord password{ ID };
 
     const QString encryptedPassword
     {

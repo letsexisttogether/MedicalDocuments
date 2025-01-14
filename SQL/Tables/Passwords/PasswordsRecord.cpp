@@ -1,26 +1,26 @@
-#include "PasswordsTable.hpp"
+#include "PasswordsRecord.hpp"
 
-PasswordsTable::PasswordsTable()
+PasswordsRecord::PasswordsRecord()
     : DefaultRecord{ "Passwords "}
 {}
 
-PasswordsTable::PasswordsTable(const ID ID)
+PasswordsRecord::PasswordsRecord(const ID ID)
     : DefaultRecord{ "Passwords" }
 {
     LoadData("ID", QString::number(ID));
 }
 
-const QString& PasswordsTable::GetEncrypted() const noexcept
+const QString& PasswordsRecord::GetEncrypted() const noexcept
 {
     return m_Encrypted;
 }
 
-const QString& PasswordsTable::GetSalt() const noexcept
+const QString& PasswordsRecord::GetSalt() const noexcept
 {
     return m_Salt;
 }
 
-void PasswordsTable::SetData(const TableRecord& record) noexcept
+void PasswordsRecord::SetData(const TableRecord& record) noexcept
 {
     m_ID = record.GetColumnValue("ID").toInt();
 

@@ -3,16 +3,16 @@
 
 #include "SQL/Tables/DefaultRecord.hpp"
 
-class PasswordsTable : public DefaultRecord
+class PasswordsRecord : public DefaultRecord
 {
 public:
-    PasswordsTable();
-    PasswordsTable(const PasswordsTable&) = default;
-    PasswordsTable(PasswordsTable&&) = default;
+    PasswordsRecord();
+    PasswordsRecord(const PasswordsRecord&) = default;
+    PasswordsRecord(PasswordsRecord&&) = default;
 
-    PasswordsTable(const ID ID);
+    PasswordsRecord(const ID ID);
 
-    ~PasswordsTable() = default;
+    ~PasswordsRecord() = default;
 
     const QString& GetEncrypted() const noexcept;
     const QString& GetSalt() const noexcept;
