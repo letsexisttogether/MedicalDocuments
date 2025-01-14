@@ -54,7 +54,7 @@ TableRecord DefaultRecord::LoadRawData(const QString& column,
     if (data.isEmpty())
     {
         qWarning() << "Table" << m_TableName
-            << "does not have contain data with ID" << m_ID;
+            << "does not contain data with ID" << m_ID;
 
         return TableRecord{};
     }

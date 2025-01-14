@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "SQL/Manager/SQLManager.hpp"
+#include "SQL/Tables/DefaultRecord.hpp"
 #include "Authorization/PasswordEncryption/PasswordEncryptor.hpp"
 
 namespace Ui
@@ -39,6 +40,8 @@ private:
     void ResetEditFields() noexcept;
 
     bool IsDoctor() const noexcept;
+
+    bool CheckPasswordMatch(const DefaultRecord::ID ID) noexcept;
 
 private:
     Ui::Login* ui;

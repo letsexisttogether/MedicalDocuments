@@ -6,6 +6,7 @@
 #include "Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp"
 
 #include "SQL/Tables/Patients/PatientsRecord.hpp"
+#include "SQL/Tables/Passwords/PasswordsTable.hpp"
 
 Login::Login(QWidget *parent)
     : QWidget(parent), ui(new Ui::Login)
@@ -59,11 +60,17 @@ void Login::HandleLoginClick()
             emit DoctorLoginClicked();
         }
     }
+    /*
     else if (CheckLogin("Patients", "Email"))
     {
         ResetEditFields();
 
         emit PatientLoginClicked();
+    }
+    */
+    else
+    {
+        TryLoginPatient();
     }
 }
 
@@ -136,13 +143,20 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
 
 void Login::TryLoginPatient() noexcept
 {
-    PatientsRecord record{ ui->login->GetEditValue() };
+    const PatientsRecord patient{ ui->login->GetEditValue() };
 
-    if (record.IsEmpty())
+    if (patient.IsEmpty())
     {
-        ui->login->SetErrorMessage("Такого користувача немає в базі даних");
+        ui->login->SetErrorMessage("Такого пацієнта немає в базі даних");
 
         return;
+    }
+
+    if (CheckPasswordMatch(patient.GetPasswordID()))
+    {
+        m_CurrentAccountID = patient.GetID();
+
+        emit PatientLoginClicked();
     }
 }
 
@@ -157,4 +171,27 @@ void Login::ResetEditFields() noexcept
 bool Login::IsDoctor() const noexcept
 {
     return ui->doctorCheckBox->isChecked();
+}
+
+bool Login::CheckPasswordMatch(const DefaultRecord::ID ID) noexcept
+{
+    const PasswordsTable password{ ID };
+
+    const QString encryptedPassword
+    {
+        m_Encryptor.Encrypt(ui->password->GetEditValue(),
+            password.GetSalt())
+    };
+
+    if (password.GetEncrypted() != encryptedPassword)
+    {
+        ui->password->SetErrorMessage("Введений пароль не є правильним");
+        ui->password->ClearEditValue();
+
+        return false;
+    }
+
+    ResetEditFields();
+
+    return true;
 }
