@@ -6,6 +6,7 @@
 #include "Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp"
 
 #include "SQL/Tables/Patients/PatientsRecord.hpp"
+#include "SQL/Tables/Doctors/DoctorsRecord.hpp"
 #include "SQL/Tables/Passwords/PasswordsRecord.hpp"
 
 Login::Login(QWidget *parent)
@@ -53,21 +54,8 @@ void Login::HandleLoginClick()
 
     if (IsDoctor())
     {
-        if (CheckLogin("Doctors", "SpecialCode"))
-        {
-            ResetEditFields();
-
-            emit DoctorLoginClicked();
-        }
+        TryLoginDoctor();
     }
-    /*
-    else if (CheckLogin("Patients", "Email"))
-    {
-        ResetEditFields();
-
-        emit PatientLoginClicked();
-    }
-    */
     else
     {
         TryLoginPatient();
@@ -147,7 +135,7 @@ void Login::TryLoginPatient() noexcept
 
     if (patient.IsEmpty())
     {
-        ui->login->SetErrorMessage("Такого пацієнта немає в базі даних");
+        ui->login->SetErrorMessage("Такого пацієнта не було зареєстовано");
 
         return;
     }
@@ -160,17 +148,24 @@ void Login::TryLoginPatient() noexcept
     }
 }
 
-void Login::ResetEditFields() noexcept
-{
-    ui->login->ClearEditValue();
-    ui->password->ClearEditValue();
 
-    ui->doctorCheckBox->setChecked(false);
-}
-
-bool Login::IsDoctor() const noexcept
+void Login::TryLoginDoctor() noexcept
 {
-    return ui->doctorCheckBox->isChecked();
+    const DoctorsRecord doctor{ ui->login->GetEditValue() };
+
+    if (doctor.IsEmpty())
+    {
+        ui->login->SetErrorMessage("Такого лікаря немає в базі даних");
+
+        return;
+    }
+
+    if (CheckPasswordMatch(doctor.GetPasswordID()))
+    {
+        m_CurrentAccountID = doctor.GetID();
+
+        emit DoctorLoginClicked();
+    }
 }
 
 bool Login::CheckPasswordMatch(const DefaultRecord::ID ID) noexcept
@@ -194,4 +189,17 @@ bool Login::CheckPasswordMatch(const DefaultRecord::ID ID) noexcept
     ResetEditFields();
 
     return true;
+}
+
+void Login::ResetEditFields() noexcept
+{
+    ui->login->ClearEditValue();
+    ui->password->ClearEditValue();
+
+    ui->doctorCheckBox->setChecked(false);
+}
+
+bool Login::IsDoctor() const noexcept
+{
+    return ui->doctorCheckBox->isChecked();
 }

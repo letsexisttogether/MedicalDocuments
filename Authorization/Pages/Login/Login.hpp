@@ -36,12 +36,13 @@ private:
     bool CheckLogin(const QString& table, const QString& column) noexcept;
 
     void TryLoginPatient() noexcept;
+    void TryLoginDoctor() noexcept;
+
+    bool CheckPasswordMatch(const DefaultRecord::ID ID) noexcept;
 
     void ResetEditFields() noexcept;
 
     bool IsDoctor() const noexcept;
-
-    bool CheckPasswordMatch(const DefaultRecord::ID ID) noexcept;
 
 private:
     Ui::Login* ui;
