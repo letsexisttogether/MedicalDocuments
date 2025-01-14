@@ -9,7 +9,7 @@ public:
     using ID = SQLManager::ID;
 
 public:
-    DefaultRecord() = delete;
+    DefaultRecord() = default;
     DefaultRecord(const DefaultRecord&) = default;
     DefaultRecord(DefaultRecord&&) = default;
 
@@ -31,8 +31,7 @@ protected:
 protected:
     ID m_ID{};
 
-private:
-    inline static ID EmptyID{ 0 };
+    bool m_IsEmpty{ true };
 
 private:
     QString m_TableName{};

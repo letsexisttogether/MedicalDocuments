@@ -9,7 +9,7 @@
 class TableRecord
 {
 public:
-    TableRecord() = delete;
+    TableRecord() = default;
     TableRecord(const TableRecord&) = default;
     TableRecord(TableRecord&&) = default;
 
@@ -27,7 +27,7 @@ public:
     bool CheckColumn(const QString& columnName) const noexcept;
 
 private:
-    QSqlRecord m_Record;
+    QSqlRecord m_Record{};
 };
 
 #endif // TABLERECORD_HPP

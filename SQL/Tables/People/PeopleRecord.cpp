@@ -10,6 +10,11 @@ void PeopleRecord::LoadData() noexcept
 {
     const TableRecord person{ LoadRawData() };
 
+    if (IsEmpty())
+    {
+        return;
+    }
+
     m_FirstName = person.GetColumnValue("FirstName").toString();
     m_LastName = person.GetColumnValue("LastName").toString();
     m_Patrynomic = person.GetColumnValue("Patronymic").toString();

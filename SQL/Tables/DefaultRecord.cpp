@@ -11,7 +11,7 @@ DefaultRecord::ID DefaultRecord::GetID() const noexcept
 
 bool DefaultRecord::IsEmpty() const noexcept
 {
-    return m_ID == EmptyID;
+    return m_IsEmpty;
 }
 
 TableRecord DefaultRecord::LoadRawData() noexcept
@@ -31,8 +31,15 @@ TableRecord DefaultRecord::LoadRawData() noexcept
 
     if (data.isEmpty())
     {
-        qWarning() << "There's no such data";
+        qWarning() << "Table" << m_TableName
+            << "does not have contain data with ID" << m_ID;
+
+        m_IsEmpty = true;
+
+        return TableRecord{};
     }
+
+    m_IsEmpty = false;
 
     return data.first();
 }
