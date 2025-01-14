@@ -46,7 +46,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 		MANUAL_FINALIZATION
 		${PROJECT_SOURCES}
 		appointmentwindow.h appointmentwindow.cpp appointmentwindow.ui
-		doctorclientwindow.h doctorclientwindow.cpp doctorclientwindow.ui
 		redactwindow.h redactwindow.cpp redactwindow.ui
 		${AUTHORIZATION_SOURCES}
 		${SQL_SOURCES}

@@ -1,11 +1,13 @@
-#include "doctorclientwindow.h"
-#include "ui_doctorclientwindow.h"
-#include "QVBoxLayout"
-#include "QTextEdit"
+#include "DoctorWindow.hpp"
+#include "ui_DoctorWindow.h"
+
+#include <QVBoxLayout>
+#include <QTextEdit>
+
 #include "redactwindow.h"
 
-DoctorClientWindow::DoctorClientWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::DoctorClientWindow)
+DoctorWindow::DoctorWindow(QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::DoctorWindow)
 {
     ui->setupUi(this);
 
@@ -16,15 +18,16 @@ DoctorClientWindow::DoctorClientWindow(QWidget *parent)
     ui->patientsBox->addItem("Anastasia");
     ui->patientsBox->addItem("Oleskandr");
 
-    connect(ui->patientsBox, &QComboBox::currentTextChanged, this, &DoctorClientWindow::OnPatientChange);
+    connect(ui->patientsBox, &QComboBox::currentTextChanged, this,
+        &DoctorWindow::OnPatientChange);
 }
 
-DoctorClientWindow::~DoctorClientWindow()
+DoctorWindow::~DoctorWindow()
 {
     delete ui;
 }
 
-void DoctorClientWindow::OnPatientChange(const QString &current_patient)
+void DoctorWindow::OnPatientChange(const QString &current_patient)
 {
     //QString current_patient = ui->patientsBox->currentText();
 

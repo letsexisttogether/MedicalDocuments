@@ -4,7 +4,7 @@
 #include <QRegularExpression>
 
 #include "MainClient/Patient/Window/PatientWindow.hpp"
-#include "doctorclientwindow.h"
+#include "MainClient/Doctor/Window/DoctorWindow.hpp"
 
 AuthorizationWindow::AuthorizationWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::AuthorizationWindow)
@@ -46,7 +46,7 @@ void AuthorizationWindow::SwitchToPatientWindow()
 
 void AuthorizationWindow::SwitchToDoctorWindow()
 {
-    DoctorClientWindow *window = new DoctorClientWindow();
+    DoctorWindow *window = new DoctorWindow();
     window->show();
 
     this->close();

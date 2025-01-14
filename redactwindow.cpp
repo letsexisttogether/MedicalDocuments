@@ -2,7 +2,8 @@
 #include "ui_redactwindow.h"
 #include "QVBoxLayout"
 #include "QTextEdit"
-#include "doctorclientwindow.h"
+
+#include "MainClient/Doctor/Window/DoctorWindow.hpp"
 
 RedactWindow::RedactWindow(QWidget *parent, QString name, QString text)
     : QMainWindow(parent), m_name(name), m_text(text)
@@ -62,7 +63,7 @@ RedactWindow::~RedactWindow()
 
 void RedactWindow::OnConfirm()
 {
-    DoctorClientWindow* preivous = (DoctorClientWindow*)this->parentWidget();
+    DoctorWindow* preivous = (DoctorWindow*)this->parentWidget();
     int index = preivous->TestData[m_name].indexOf(m_text);
     preivous->TestData[m_name].replace(index, Editor->toPlainText());
     preivous->show();

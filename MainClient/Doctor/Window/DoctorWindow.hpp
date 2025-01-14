@@ -5,16 +5,16 @@
 
 namespace Ui
 {
-    class DoctorClientWindow;
+    class DoctorWindow;
 }
 
-class DoctorClientWindow : public QMainWindow
+class DoctorWindow: public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit DoctorClientWindow(QWidget *parent = nullptr);
-    ~DoctorClientWindow();
+    explicit DoctorWindow(QWidget *parent = nullptr);
+    ~DoctorWindow();
 
     QMap<QString, QVector<QString>> TestData;
 
@@ -22,9 +22,7 @@ public slots:
     void OnPatientChange(const QString &current_patient);
 
 private:
-    Ui::DoctorClientWindow *ui;
-
-
+    Ui::DoctorWindow* ui;
 };
 
 #endif // DOCTORCLIENTWINDOW_H
