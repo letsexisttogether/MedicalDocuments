@@ -34,7 +34,7 @@ AuthorizationWindow::~AuthorizationWindow()
 
 void AuthorizationWindow::SwitchToPatientWindow()
 {
-    PatientWindow *window = new PatientWindow
+    PatientWindow* window = new PatientWindow
     {
         ui->authorizationWidget->GetCurrentAccountID()
     };

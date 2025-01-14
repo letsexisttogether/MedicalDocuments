@@ -18,7 +18,9 @@ public:
     // It's not virtual for the compiler not to create a v-table
     ~DefaultRecord() = default;
 
-    SQLManager::ID GetID() const noexcept;
+    ID GetID() const noexcept;
+
+    bool IsEmpty() const noexcept;
 
     DefaultRecord& operator = (const DefaultRecord&) noexcept = default;
     DefaultRecord& operator = (DefaultRecord&&) noexcept = default;
@@ -28,6 +30,9 @@ protected:
 
 protected:
     ID m_ID{};
+
+private:
+    inline static ID EmptyID{ 0 };
 
 private:
     QString m_TableName{};

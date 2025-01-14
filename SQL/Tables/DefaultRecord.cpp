@@ -9,6 +9,11 @@ DefaultRecord::ID DefaultRecord::GetID() const noexcept
     return m_ID;
 }
 
+bool DefaultRecord::IsEmpty() const noexcept
+{
+    return m_ID == EmptyID;
+}
+
 TableRecord DefaultRecord::LoadRawData() noexcept
 {
     SQLManager& manager{ SQLManager::GetInstance() };
