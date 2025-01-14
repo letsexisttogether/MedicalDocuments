@@ -26,9 +26,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 set(PROJECT_SOURCES
 	main.cpp
-	mainwindow.cpp
-	mainwindow.h
-	mainwindow.ui
 )
 
 # ============================================
@@ -36,6 +33,8 @@ set(PROJECT_SOURCES
 # ============================================
 
 add_subdirectory(Authorization)
+add_subdirectory(MainClient)
+
 add_subdirectory(SQL)
 
 # ============================================
@@ -47,11 +46,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 		MANUAL_FINALIZATION
 		${PROJECT_SOURCES}
 		appointmentwindow.h appointmentwindow.cpp appointmentwindow.ui
-		registerwindow.h registerwindow.cpp registerwindow.ui
 		doctorclientwindow.h doctorclientwindow.cpp doctorclientwindow.ui
 		redactwindow.h redactwindow.cpp redactwindow.ui
 		${AUTHORIZATION_SOURCES}
 		${SQL_SOURCES}
+		${MAINCLIENT_SOURCES}
 	)
 else()
 	if(ANDROID)

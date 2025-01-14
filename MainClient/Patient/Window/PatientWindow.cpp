@@ -1,15 +1,14 @@
-#include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "PatientWindow.hpp"
+#include "ui_PatientWindow.h"
+
 #include "appointmentwindow.h"
 
-MainWindow::MainWindow(const SQLManager::ID ID, QWidget *parent)
-    : m_AccountID{ ID }, QMainWindow(parent), ui{ new Ui::MainWindow }
+PatientWindow::PatientWindow(const SQLManager::ID ID, QWidget *parent)
+    : QMainWindow(parent), ui{ new Ui::PatientWindow }, m_Person{ ID }
 {
     ui->setupUi(this);
 
-    LoadBIO();
-
-    qDebug() << "The account ID: " << m_AccountID;
+    SetBIO();
 
     QWidget *scrollWidget = ui->scrollArea->widget();
     QVBoxLayout *scrollLayout = qobject_cast<QVBoxLayout *>(scrollWidget->layout());
@@ -37,12 +36,12 @@ MainWindow::MainWindow(const SQLManager::ID ID, QWidget *parent)
     }
 }
 
-MainWindow::~MainWindow()
+PatientWindow::~PatientWindow()
 {
     delete ui;
 }
 
-void MainWindow::OpenAppointmentWindow()
+void PatientWindow::OpenAppointmentWindow()
 {
     AppointmentWindow *appointmentWindow = new AppointmentWindow();
 
@@ -53,34 +52,30 @@ void MainWindow::OpenAppointmentWindow()
     this->close();
 }
 
-void MainWindow::LoadBIO() noexcept
+void PatientWindow::SetBIO() noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
-    const QString bioColumnName{ "BIO"};
-
-    const QString query
+    const QString medRecord
     {
-        QString("SELECT (People.LastName + ' ' + People.FirstName + "
-            "' ' + People.Patronymic) AS %1 "
-            "FROM Patients JOIN People "
-            "ON Patients.PersonID = People.ID "
-            "WHERE Patients.ID = %2")
-        .arg(bioColumnName)
-        .arg(m_AccountID)
+        QString::number(m_Person.GetID())
     };
+    ui->medRecord->setText(medRecord);
 
-    QList<TableRecord> data{ manager.ReadTableData(query) };
-
-    if (data.isEmpty())
+    const QString fullName
     {
-        qDebug() << "There's no such data";
+        m_Person.GetLastName() + ' ' + m_Person.GetFirstName() +
+            ' ' + m_Person.GetPatrynomic()
+    };
+    ui->bio->setText(fullName);
 
-        return;
-    }
-    const TableRecord& person{ data.first() };
+    const QString gender
+    {
+        ((m_Person.GetGender()) ? ("Чоловік") : ("Жінка"))
+    };
+    ui->gender->setText(gender);
 
-    const QString bio{ person.GetColumnValue(bioColumnName).toString() };
-
-    ui->bio->setText(bio);
+    const QString birthdate
+    {
+        m_Person.GetBirthdate().toString("dd.MM.yyyy")
+    };
+    ui->birthdate->setText(birthdate);
 }

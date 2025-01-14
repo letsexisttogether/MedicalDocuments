@@ -4,7 +4,6 @@ TableRecord::TableRecord(QSqlRecord&& record)
     : m_Record{ record }
 {}
 
-
 QVariant TableRecord::GetColumnValue(const QString& columnName) const noexcept
 {
     if (CheckColumn(columnName))

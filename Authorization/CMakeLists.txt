@@ -2,9 +2,9 @@
 set(CD ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(AUTHORIZATION_SOURCES
-	${CD}/Window/authorizationwindow.h
-	${CD}/Window/authorizationwindow.cpp
-	${CD}/Window/authorizationwindow.ui
+	${CD}/Window/AuthorizationWindow.hpp
+	${CD}/Window/AuthorizationWindow.cpp
+	${CD}/Window/AuthorizationWindow.ui
 
 	${CD}/CustomField/CustomField.hpp
 	${CD}/CustomField/CustomField.cpp

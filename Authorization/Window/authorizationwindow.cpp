@@ -1,9 +1,9 @@
-#include "authorizationwindow.h"
-#include "ui_authorizationwindow.h"
+#include "AuthorizationWindow.hpp"
+#include "ui_AuthorizationWindow.h"
 
 #include <QRegularExpression>
 
-#include "mainwindow.h"
+#include "MainClient/Patient/Window/PatientWindow.hpp"
 #include "doctorclientwindow.h"
 
 AuthorizationWindow::AuthorizationWindow(QWidget *parent)
@@ -34,7 +34,7 @@ AuthorizationWindow::~AuthorizationWindow()
 
 void AuthorizationWindow::SwitchToPatientWindow()
 {
-    MainWindow *window = new MainWindow
+    PatientWindow *window = new PatientWindow
     {
         ui->authorizationWidget->GetCurrentAccountID()
     };

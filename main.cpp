@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <QPair>
 
-#include "Authorization/Window/authorizationwindow.h"
+#include "Authorization/Window/AuthorizationWindow.hpp"
 #include "SQL/Manager/SQLManager.hpp"
 #include "Authorization/PasswordEncryption/PasswordEncryptor.hpp"
 

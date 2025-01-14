@@ -9,33 +9,33 @@
 #include <QPushButton>
 #include <QWidget>
 
-#include "SQL/Manager/SQLManager.hpp"
+#include "SQL/Tables/People/PeopleRecord.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
-    class MainWindow;
+    class PatientWindow;
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class PatientWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(const SQLManager::ID ID, QWidget *parent = nullptr);
+    explicit PatientWindow(const SQLManager::ID ID, QWidget *parent = nullptr);
 
-    ~MainWindow();
+    ~PatientWindow();
 
 private slots:
     void OpenAppointmentWindow();
 
 private:
-    void LoadBIO() noexcept;
+    void SetBIO() noexcept;
 
 private:
-    Ui::MainWindow *ui;
+    Ui::PatientWindow *ui;
 
-    SQLManager::ID m_AccountID{};
+    PeopleRecord m_Person;
 };
 #endif // MAINWINDOW_H

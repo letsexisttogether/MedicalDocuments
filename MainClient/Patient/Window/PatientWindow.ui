@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>PatientWindow</class>
+ <widget class="QMainWindow" name="PatientWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,9 +17,9 @@
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>100</y>
-      <width>1191</width>
+      <width>1181</width>
       <height>651</height>
      </rect>
     </property>
@@ -31,7 +31,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1189</width>
+       <width>1179</width>
        <height>649</height>
       </rect>
      </property>
@@ -41,7 +41,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>10</y>
+      <y>30</y>
       <width>63</width>
       <height>20</height>
      </rect>
@@ -53,21 +53,21 @@
    <widget class="QLabel" name="bio">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>10</y>
+      <x>60</x>
+      <y>30</y>
       <width>861</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>НЕВІДОМИЙ</string>
+     <string>?</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>20</y>
+      <x>490</x>
+      <y>30</y>
       <width>251</width>
       <height>71</height>
      </rect>
@@ -81,17 +81,82 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Ваші записи&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QLabel" name="genderName">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>191</width>
-      <height>31</height>
+      <x>30</x>
+      <y>50</y>
+      <width>63</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Налаштування профілю</string>
+     <string>Стать:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="birthdateName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>70</y>
+      <width>111</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Дата народження:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gender">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>50</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>?</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="birthdate">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>70</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>?</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="medRecordName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Мед. карта:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="medRecord">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>?</string>
     </property>
    </widget>
   </widget>
