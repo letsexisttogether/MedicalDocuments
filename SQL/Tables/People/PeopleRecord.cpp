@@ -1,26 +1,13 @@
 #include "PeopleRecord.hpp"
 
-PeopleRecord::PeopleRecord(const SQLManager::ID ID)
-    : DefaultRecord{ ID, "People" }
+PeopleRecord::PeopleRecord()
+    : DefaultRecord{ "People" }
+{}
+
+PeopleRecord::PeopleRecord(const ID ID)
+    : DefaultRecord{ "People" }
 {
-    LoadData();
-}
-
-void PeopleRecord::LoadData() noexcept
-{
-    const TableRecord person{ LoadRawData() };
-
-    if (IsEmpty())
-    {
-        return;
-    }
-
-    m_FirstName = person.GetColumnValue("FirstName").toString();
-    m_LastName = person.GetColumnValue("LastName").toString();
-    m_Patrynomic = person.GetColumnValue("Patronymic").toString();
-
-    m_Gender = person.GetColumnValue("Gender").toBool();
-    m_Birthdate = person.GetColumnValue("Birthdate").toDate();
+    LoadData("ID", QString::number(ID));
 }
 
 const QString& PeopleRecord::GetFirstName() const noexcept
@@ -46,4 +33,16 @@ bool PeopleRecord::GetGender() const noexcept
 const QDate& PeopleRecord::GetBirthdate() const noexcept
 {
     return m_Birthdate;
+}
+
+void PeopleRecord::SetData(const TableRecord& record) noexcept
+{
+    m_ID = record.GetColumnValue("ID").toInt();
+
+    m_FirstName = record.GetColumnValue("FirstName").toString();
+    m_LastName = record.GetColumnValue("LastName").toString();
+    m_Patrynomic = record.GetColumnValue("Patronymic").toString();
+
+    m_Gender = record.GetColumnValue("Gender").toBool();
+    m_Birthdate = record.GetColumnValue("Birthdate").toDate();
 }

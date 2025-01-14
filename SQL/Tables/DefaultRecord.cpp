@@ -1,5 +1,9 @@
 #include "DefaultRecord.hpp"
 
+DefaultRecord::DefaultRecord(QString&& tableName)
+    : m_TableName{ std::move(tableName) }
+{}
+
 DefaultRecord::DefaultRecord(const ID ID, QString&& tableName)
     : m_ID{ ID }, m_TableName{ std::move(tableName) }
 {}
@@ -14,15 +18,28 @@ bool DefaultRecord::IsEmpty() const noexcept
     return m_IsEmpty;
 }
 
-TableRecord DefaultRecord::LoadRawData() noexcept
+void DefaultRecord::LoadData(const QString& column, const QString& value)
+    noexcept
+{
+    const TableRecord record{ LoadRawData(column, value) };
+
+    if (!record.IsEmpty())
+    {
+        SetData(record);
+    }
+}
+
+TableRecord DefaultRecord::LoadRawData(const QString& column,
+    const QString& value) noexcept
 {
     SQLManager& manager{ SQLManager::GetInstance() };
 
     const QString query
     {
-        QString("SELECT * FROM %1 WHERE ID = %2")
+        QString("SELECT * FROM %1 WHERE %2 = '%3'")
             .arg(m_TableName)
-            .arg(m_ID)
+            .arg(column)
+            .arg(value)
     };
 
     qDebug() << query;

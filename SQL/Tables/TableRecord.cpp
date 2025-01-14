@@ -35,3 +35,8 @@ bool TableRecord::CheckColumn(const QString& columnName) const noexcept
 
     return false;
 }
+
+bool TableRecord::IsEmpty() const noexcept
+{
+    return m_Record.isEmpty();
+}

@@ -13,20 +13,26 @@ public:
     DefaultRecord(const DefaultRecord&) = default;
     DefaultRecord(DefaultRecord&&) = default;
 
+    explicit DefaultRecord(QString&& tableName);
     explicit DefaultRecord(const ID ID, QString&& tableName);
 
-    // It's not virtual for the compiler not to create a v-table
-    ~DefaultRecord() = default;
+    virtual ~DefaultRecord() = default;
 
     ID GetID() const noexcept;
 
+    // TODO: Remove if everything works
     bool IsEmpty() const noexcept;
 
     DefaultRecord& operator = (const DefaultRecord&) noexcept = default;
     DefaultRecord& operator = (DefaultRecord&&) noexcept = default;
 
 protected:
-    TableRecord LoadRawData() noexcept;
+    void LoadData(const QString& column, const QString& value) noexcept;
+
+    TableRecord LoadRawData(const QString& column, const QString& value)
+        noexcept;
+
+    virtual void SetData(const TableRecord& record) noexcept = 0;
 
 protected:
     ID m_ID{};

@@ -1,9 +1,19 @@
 #include "PatientsRecord.hpp"
 
+PatientsRecord::PatientsRecord()
+    : DefaultRecord{ "Patients" }
+{}
+
 PatientsRecord::PatientsRecord(const ID ID)
-    : DefaultRecord{ ID, "Patients" }
+    : DefaultRecord{ "Patients" }
 {
-    LoadData();
+    LoadData("ID", QString::number(ID));
+}
+
+PatientsRecord::PatientsRecord(const QString& email)
+    : DefaultRecord{ "Patients "}
+{
+    LoadData("Email", email);
 }
 
 DefaultRecord::ID PatientsRecord::GetPersonID() const
@@ -31,15 +41,15 @@ const QString& PatientsRecord::GetAddress() const
     return m_Address;
 }
 
-void PatientsRecord::LoadData() noexcept
+void PatientsRecord::SetData(const TableRecord& record) noexcept
 {
-    const TableRecord patient{ LoadRawData() };
+    m_ID = record.GetColumnValue("ID").toInt();
 
-    m_PersonID = patient.GetColumnValue("PersonID").toInt();
+    m_PersonID = record.GetColumnValue("PersonID").toInt();
 
-    m_Email = patient.GetColumnValue("Email").toString();
-    m_PasswordID = patient.GetColumnValue("PasswordID").toInt();
+    m_Email = record.GetColumnValue("Email").toString();
+    m_PasswordID = record.GetColumnValue("PasswordID").toInt();
 
-    m_PhoneNumber = patient.GetColumnValue("PhoneNumber").toString();
-    m_Address = patient.GetColumnValue("Address").toString();
+    m_PhoneNumber = record.GetColumnValue("PhoneNumber").toString();
+    m_Address = record.GetColumnValue("Address").toString();
 }

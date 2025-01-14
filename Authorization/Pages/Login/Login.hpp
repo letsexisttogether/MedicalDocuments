@@ -34,6 +34,8 @@ private slots:
 private:
     bool CheckLogin(const QString& table, const QString& column) noexcept;
 
+    void TryLoginPatient() noexcept;
+
     void ResetEditFields() noexcept;
 
     bool IsDoctor() const noexcept;

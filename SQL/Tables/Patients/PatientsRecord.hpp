@@ -7,12 +7,13 @@
 class PatientsRecord : public DefaultRecord
 {
 public:
-    PatientsRecord() = delete;
+    PatientsRecord();
 
     PatientsRecord(const PatientsRecord&) = default;
     PatientsRecord(PatientsRecord&&) = default;
 
     explicit PatientsRecord(const ID ID);
+    explicit PatientsRecord(const QString& email);
 
     ~PatientsRecord() = default;
 
@@ -28,7 +29,7 @@ public:
     PatientsRecord& operator = (PatientsRecord&&) noexcept = default;
 
 private:
-    void LoadData() noexcept;
+    void SetData(const TableRecord& table) noexcept override;
 
 private:
     ID m_PersonID{};

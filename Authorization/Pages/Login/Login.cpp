@@ -5,6 +5,8 @@
 #include "Authorization/FieldCheck/DefaultCheckers/DefaultPasswordChecker.hpp"
 #include "Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp"
 
+#include "SQL/Tables/Patients/PatientsRecord.hpp"
+
 Login::Login(QWidget *parent)
     : QWidget(parent), ui(new Ui::Login)
 {
@@ -130,6 +132,11 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
     m_CurrentAccountID = person.GetColumnValue("ID").toInt();
 
     return true;
+}
+
+void Login::TryLoginPatient() noexcept
+{
+
 }
 
 void Login::ResetEditFields() noexcept

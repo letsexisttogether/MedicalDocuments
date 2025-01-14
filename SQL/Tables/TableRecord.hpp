@@ -26,6 +26,8 @@ public:
 
     bool CheckColumn(const QString& columnName) const noexcept;
 
+    bool IsEmpty() const noexcept;
+
 private:
     QSqlRecord m_Record{};
 };

@@ -9,15 +9,13 @@
 class PeopleRecord : public DefaultRecord
 {
 public:
-    PeopleRecord() = delete;
+    PeopleRecord();
     PeopleRecord(const PeopleRecord&) = default;
     PeopleRecord(PeopleRecord&&) = default;
 
     explicit PeopleRecord(const SQLManager::ID ID);
 
     ~PeopleRecord() = default;
-
-    void LoadData() noexcept;
 
     const QString& GetFirstName() const noexcept;
     const QString& GetLastName() const noexcept;
@@ -28,6 +26,9 @@ public:
 
     PeopleRecord& operator = (const PeopleRecord&) noexcept = default;
     PeopleRecord& operator = (PeopleRecord&&) noexcept = default;
+
+private:
+    void SetData(const TableRecord& record) noexcept override;
 
 private:
     QString m_FirstName{};
