@@ -4,12 +4,16 @@
 #include <QVBoxLayout>
 #include <QTextEdit>
 
+#include "SQL/Tables/People/PeopleRecord.hpp"
+#include "SQL/Tables/Specializations/SpecializationsRecord.hpp"
 #include "redactwindow.h"
 
-DoctorWindow::DoctorWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::DoctorWindow)
+DoctorWindow::DoctorWindow(const DefaultRecord::ID ID, QWidget *parent)
+    : QMainWindow(parent), ui{ new Ui::DoctorWindow }, m_Doctor{ ID }
 {
     ui->setupUi(this);
+
+    SetBIO();
 
     TestData.insert("Oleskandr", QVector<QString>{"aaa", "aa", "a"});
     TestData.insert("Anastasia", QVector<QString>{"bbbb", "bbb", "bb", "b"});
@@ -91,4 +95,38 @@ void DoctorWindow::OnPatientChange(const QString &current_patient)
         // Додаємо до прокрутки
         scrollLayout->addWidget(recordWidget);
     }
+}
+
+void DoctorWindow::SetBIO() noexcept
+{
+    PeopleRecord person{ m_Doctor.GetPersonID() };
+
+    const QString fullName
+    {
+        person.GetLastName() + ' ' + person.GetFirstName() +
+            ' ' + person.GetPatrynomic()
+    };
+    ui->bio->setText(fullName);
+
+    const QString gender
+    {
+        ((person.GetGender()) ? ("Чоловік") : ("Жінка"))
+    };
+    ui->gender->setText(gender);
+
+    const SpecializationsRecord specialization
+    {
+        m_Doctor.GetSpecializationID()
+    };
+    ui->specialization->setText(specialization.GetTitle());
+    ui->specialization->setToolTip(specialization.GetDescription());
+
+    const quint16 workExperience = m_Doctor.GetWorkExperience();
+    const QString workExperienceStr
+    {
+        QString("%1 років %2 місяців")
+            .arg(workExperience / 12)
+            .arg(workExperience % 12)
+    };
+    ui->workExperience->setText(workExperienceStr);
 }

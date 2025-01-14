@@ -46,7 +46,11 @@ void AuthorizationWindow::SwitchToPatientWindow()
 
 void AuthorizationWindow::SwitchToDoctorWindow()
 {
-    DoctorWindow *window = new DoctorWindow();
+    DoctorWindow *window = new DoctorWindow
+    {
+        ui->authorizationWidget->GetCurrentAccountID()
+    };
+
     window->show();
 
     this->close();

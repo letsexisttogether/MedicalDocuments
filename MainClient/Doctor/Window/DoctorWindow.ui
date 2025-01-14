@@ -6,32 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>191</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Налаштування профілю</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="openAppointmentWindowButton">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>510</y>
+      <x>530</x>
+      <y>710</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -44,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>250</x>
-      <y>70</y>
+      <y>90</y>
       <width>121</width>
       <height>20</height>
      </rect>
@@ -56,10 +43,10 @@
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>140</y>
-      <width>801</width>
-      <height>361</height>
+      <width>1181</width>
+      <height>551</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -70,29 +57,65 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>799</width>
-       <height>359</height>
+       <width>1179</width>
+       <height>549</height>
       </rect>
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QComboBox" name="patientsBox">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>10</y>
+      <x>380</x>
+      <y>90</y>
+      <width>301</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="specialization">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>50</y>
       <width>101</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>ТУТ ТІПА ПІБ</string>
+     <string>?</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="specializationName">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>10</x>
+      <y>50</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Спеціальність:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gender">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>30</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>?</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="bioName">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
       <y>10</y>
       <width>63</width>
       <height>20</height>
@@ -102,14 +125,56 @@
      <string>ПІБ:</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="patientsBox">
+   <widget class="QLabel" name="bio">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>70</y>
-      <width>301</width>
-      <height>26</height>
+      <x>40</x>
+      <y>10</y>
+      <width>861</width>
+      <height>20</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>?</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="genderName">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Стать:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="workExperienceName">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Досвід:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="workExperience">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>70</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -118,7 +183,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1200</width>
      <height>21</height>
     </rect>
    </property>

@@ -1,9 +1,10 @@
 #include "PatientWindow.hpp"
 #include "ui_PatientWindow.h"
 
+#include "SQL/Tables/People/PeopleRecord.hpp"
 #include "appointmentwindow.h"
 
-PatientWindow::PatientWindow(const SQLManager::ID ID, QWidget *parent)
+PatientWindow::PatientWindow(const DefaultRecord::ID ID, QWidget *parent)
     : QMainWindow(parent), ui{ new Ui::PatientWindow }, m_Patient{ ID }
 {
     ui->setupUi(this);
@@ -54,30 +55,30 @@ void PatientWindow::OpenAppointmentWindow()
 
 void PatientWindow::SetBIO() noexcept
 {
-    PeopleRecord m_Person{ m_Patient.GetPersonID() };
+    PeopleRecord person{ m_Patient.GetPersonID() };
 
     const QString medRecord
     {
-        QString::number(m_Person.GetID())
+        QString::number(person.GetID())
     };
     ui->medRecord->setText(medRecord);
 
     const QString fullName
     {
-        m_Person.GetLastName() + ' ' + m_Person.GetFirstName() +
-            ' ' + m_Person.GetPatrynomic()
+        person.GetLastName() + ' ' + person.GetFirstName() +
+            ' ' + person.GetPatrynomic()
     };
     ui->bio->setText(fullName);
 
     const QString gender
     {
-        ((m_Person.GetGender()) ? ("Чоловік") : ("Жінка"))
+        ((person.GetGender()) ? ("Чоловік") : ("Жінка"))
     };
     ui->gender->setText(gender);
 
     const QString birthdate
     {
-        m_Person.GetBirthdate().toString("dd.MM.yyyy")
+        person.GetBirthdate().toString("dd.MM.yyyy")
     };
     ui->birthdate->setText(birthdate);
 }

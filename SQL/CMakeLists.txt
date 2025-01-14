@@ -23,7 +23,7 @@ set(SQL_SOURCES
 	${CD}/Tables/Doctors/DoctorsRecord.hpp
 	${CD}/Tables/Doctors/DoctorsRecord.cpp
 
-	${CD}/Tables/Specialzations/SpecializationsRecord.hpp
+	${CD}/Tables/Specializations/SpecializationsRecord.hpp
 	${CD}/Tables/Specializations/SpecializationsRecord.cpp
 
 	PARENT_SCOPE

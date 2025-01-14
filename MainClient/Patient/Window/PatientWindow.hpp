@@ -9,7 +9,6 @@
 #include <QPushButton>
 #include <QWidget>
 
-#include "SQL/Tables/People/PeopleRecord.hpp"
 #include "SQL/Tables/Patients/PatientsRecord.hpp"
 
 QT_BEGIN_NAMESPACE
@@ -24,7 +23,8 @@ class PatientWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit PatientWindow(const SQLManager::ID ID, QWidget *parent = nullptr);
+    explicit PatientWindow(const DefaultRecord::ID ID,
+        QWidget *parent = nullptr);
 
     ~PatientWindow();
 
