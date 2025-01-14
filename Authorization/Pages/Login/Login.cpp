@@ -136,7 +136,14 @@ bool Login::CheckLogin(const QString& table, const QString& column) noexcept
 
 void Login::TryLoginPatient() noexcept
 {
+    PatientsRecord record{ ui->login->GetEditValue() };
 
+    if (record.IsEmpty())
+    {
+        ui->login->SetErrorMessage("Такого користувача немає в базі даних");
+
+        return;
+    }
 }
 
 void Login::ResetEditFields() noexcept

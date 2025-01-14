@@ -23,10 +23,15 @@ void DefaultRecord::LoadData(const QString& column, const QString& value)
 {
     const TableRecord record{ LoadRawData(column, value) };
 
-    if (!record.IsEmpty())
+    if (record.IsEmpty())
     {
-        SetData(record);
+        m_IsEmpty = true;
+
+        return;
     }
+
+    m_IsEmpty = false;
+    SetData(record);
 }
 
 TableRecord DefaultRecord::LoadRawData(const QString& column,
@@ -51,12 +56,8 @@ TableRecord DefaultRecord::LoadRawData(const QString& column,
         qWarning() << "Table" << m_TableName
             << "does not have contain data with ID" << m_ID;
 
-        m_IsEmpty = true;
-
         return TableRecord{};
     }
-
-    m_IsEmpty = false;
 
     return data.first();
 }
