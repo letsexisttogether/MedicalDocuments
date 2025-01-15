@@ -10,5 +10,9 @@ set(MAINCLIENT_SOURCES
 	${CD}/Doctor/Window/DoctorWindow.cpp
 	${CD}/Doctor/Window/DoctorWindow.ui
 
+	${CD}/Patient/Appointment/PatientAppointment.hpp
+	${CD}/Patient/Appointment/PatientAppointment.cpp
+	${CD}/Patient/Appointment/PatientAppointment.ui
+
 	PARENT_SCOPE
 )
