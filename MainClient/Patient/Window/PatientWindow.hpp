@@ -34,6 +34,8 @@ private slots:
 private:
     void SetBIO() noexcept;
 
+    void SetAppointments() noexcept;
+
 private:
     Ui::PatientWindow *ui;
 

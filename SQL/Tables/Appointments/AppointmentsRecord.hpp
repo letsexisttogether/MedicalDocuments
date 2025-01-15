@@ -20,7 +20,7 @@ public:
     ID GetDoctorID() const noexcept;
     ID GetPatientID() const noexcept;
 
-    QDate GetDate() const noexcept;
+    const QDate& GetDate() const noexcept;
 
     const QString& GetDiagnosis() const noexcept;
     const QString& GetRecommendations() const noexcept;
