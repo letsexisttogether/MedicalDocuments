@@ -8,6 +8,31 @@ AppointmentsRecord::AppointmentsRecord(const ID ID, const bool isByDoctor)
     : DefaultRecord{ "Appointments" }
 {}
 
+AppointmentsRecord::ID AppointmentsRecord::GetDoctorID() const noexcept
+{
+    return m_DoctorID;
+}
+
+AppointmentsRecord::ID AppointmentsRecord::GetPatientID() const noexcept
+{
+    return m_PatientID;
+}
+
+const QDate& AppointmentsRecord::GetDate() const noexcept
+{
+    return m_Date;
+}
+
+const QString& AppointmentsRecord::GetDiagnosis() const noexcept
+{
+    return m_Diagnosis;
+}
+
+const QString& AppointmentsRecord::GetRecommendations() const noexcept
+{
+    return m_Recommendations;
+}
+
 void AppointmentsRecord::SetData(const TableRecord& record) noexcept
 {
     m_ID = record.GetColumnValue("ID").toInt();
