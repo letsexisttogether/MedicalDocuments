@@ -15,8 +15,11 @@ class PatientAppointment : public QWidget
     Q_OBJECT
 
 public:
+    explicit PatientAppointment(AppointmentsRecord&& appointment,
+        QWidget* parent = nullptr);
+
     explicit PatientAppointment(const DefaultRecord::ID ID,
-        const bool isByDoctor, QWidget *parent = nullptr);
+        const bool isByDoctor, QWidget* parent = nullptr);
 
     ~PatientAppointment();
 

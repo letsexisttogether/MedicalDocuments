@@ -1,6 +1,7 @@
 #include "PatientWindow.hpp"
 #include "ui_PatientWindow.h"
 
+#include "SQL/Loaders/AppointmentsLoader.hpp"
 #include "SQL/Tables/People/PeopleRecord.hpp"
 #include "MainClient/Patient/Appointment/PatientAppointment.hpp"
 #include "appointmentwindow.h"
@@ -71,7 +72,15 @@ void PatientWindow::SetAppointments() noexcept
         scrollWidget->setLayout(scrollLayout);
     }
 
-    scrollLayout->addWidget(new PatientAppointment{ m_Patient.GetID(), false });
+    AppointmentsLoader loader{ m_Patient.GetID(), false };
+
+    for (qsizetype i = 0; i < loader.GetCount(); ++i)
+    {
+        scrollLayout->addWidget(new PatientAppointment
+        {
+            loader.GetCurrent()
+        });
+    }
 
     /*
     // Додаємо записи динамічно

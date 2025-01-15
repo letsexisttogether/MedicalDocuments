@@ -5,9 +5,19 @@
 #include "SQL/Tables/People/PeopleRecord.hpp"
 #include "SQL/Tables/Specializations/SpecializationsRecord.hpp"
 
+PatientAppointment::PatientAppointment(AppointmentsRecord&& appointment,
+       QWidget *parent)
+    : QWidget{ parent }, ui{ new Ui::PatientAppointment },
+    m_Appointment{ std::move(appointment) }
+{
+    ui->setupUi(this);
+
+    SetInformation();
+}
+
 PatientAppointment::PatientAppointment(const DefaultRecord::ID ID,
     const bool isByDoctor, QWidget *parent)
-    : QWidget(parent), ui{ new Ui::PatientAppointment },
+    : QWidget{ parent }, ui{ new Ui::PatientAppointment },
     m_Appointment{ ID , isByDoctor }
 {
     ui->setupUi(this);
@@ -22,10 +32,10 @@ PatientAppointment::~PatientAppointment()
 
 void PatientAppointment::SetInformation() noexcept
 {
-    DoctorsRecord doctor{ m_Appointment.GetDoctorID() };
+    const DoctorsRecord doctor{ m_Appointment.GetDoctorID() };
 
-    PeopleRecord person{ doctor.GetPersonID() };
-    SpecializationsRecord specialization{ doctor.GetSpecializationID() };
+    const PeopleRecord person{ doctor.GetPersonID() };
+    const SpecializationsRecord specialization{ doctor.GetSpecializationID() };
 
     const QString fullName
     {
