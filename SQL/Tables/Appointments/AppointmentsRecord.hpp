@@ -13,6 +13,7 @@ public:
     AppointmentsRecord(const AppointmentsRecord&) = default;
     AppointmentsRecord(AppointmentsRecord&&) = default;
 
+    explicit AppointmentsRecord(const ID ID);
     explicit AppointmentsRecord(const ID ID, const bool isByDoctor);
 
     ~AppointmentsRecord() = default;

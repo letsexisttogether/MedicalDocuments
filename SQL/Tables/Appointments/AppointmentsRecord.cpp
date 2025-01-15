@@ -4,6 +4,12 @@ AppointmentsRecord::AppointmentsRecord()
     : DefaultRecord{ "Appointments" }
 {}
 
+AppointmentsRecord::AppointmentsRecord(const ID ID)
+    : DefaultRecord{ "Appointments" }
+{
+    LoadData("ID", QString::number(ID));
+}
+
 AppointmentsRecord::AppointmentsRecord(const ID ID, const bool isByDoctor)
     : DefaultRecord{ "Appointments" }
 {

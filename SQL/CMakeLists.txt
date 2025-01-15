@@ -29,5 +29,8 @@ set(SQL_SOURCES
 	${CD}/Tables/Appointments/AppointmentsRecord.hpp
 	${CD}/Tables/Appointments/AppointmentsRecord.cpp
 
+	${CD}/Loaders/AppointmentsLoader.hpp
+	${CD}/Loaders/AppointmentsLoader.cpp
+
 	PARENT_SCOPE
 )
