@@ -19,10 +19,17 @@ set(MAINCLIENT_SOURCES
 
 	${CD}/General/AppointmentInfo/AppointmentInfo.hpp
 	${CD}/General/AppointmentInfo/AppointmentInfo.cpp
+	${CD}/General/PharmacyInfo/PharmacyInfo.hpp
+	${CD}/General/PharmacyInfo/PharmacyInfo.cpp
 
 	${CD}/General/AppointmentFullWidget/AppointmentFullWidget.hpp
 	${CD}/General/AppointmentFullWidget/AppointmentFullWidget.cpp
 	${CD}/General/AppointmentFullWidget/AppointmentFullWidget.ui
+
+
+	${CD}/General/PharmacyViewWidget/PharmacyViewWidget.hpp
+	${CD}/General/PharmacyViewWidget/PharmacyViewWidget.cpp
+	${CD}/General/PharmacyViewWidget/PharmacyViewWidget.ui
 
 	PARENT_SCOPE
 )

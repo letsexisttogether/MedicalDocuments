@@ -1,11 +1,18 @@
 #include "AppointmentFullWidget.hpp"
 #include "ui_AppointmentFullWidget.h"
 
+#include "SQL/Loaders/AppPharmConn/AppPharmConnMultyLoader.hpp"
+#include "SQL/Tables/AppPharmConn/AppPharmConnRecord.hpp"
+#include "SQL/Tables/Pharmacies/PharmaciesRecord.hpp"
+#include "MainClient/General/PharmacyViewWidget/PharmacyViewWidget.hpp"
+
 AppointmentFullWidget::AppointmentFullWidget(const AppointmentInfo& info,
     QWidget *parent)
     : ui{ new Ui::AppointmentFullWidget{} }, m_AppointmentInfo{ info }
 {
     ui->setupUi(this);
+
+    setAttribute(Qt::WA_DeleteOnClose);
 
     SetCompleteInformation();
 }
@@ -19,6 +26,7 @@ void AppointmentFullWidget::SetCompleteInformation() noexcept
 {
     SetDoctorSpecialization();
     SetInfo();
+    SetPharmacies();
     SetDiagnosis();
     SetRecommendations();
 }
@@ -76,6 +84,34 @@ void AppointmentFullWidget::SetInfo() noexcept
         .append(appointment.GetDate().toString(dateFormat)));
     ui->birthdate->setText(ui->birthdate->text()
        .append(patientPerson.GetBirthdate().toString(dateFormat)));
+}
+
+void AppointmentFullWidget::SetPharmacies() noexcept
+{
+    QVBoxLayout* const verticalLayout = ui->pharmaciesLayout;
+    verticalLayout->setAlignment(Qt::AlignTop);
+
+    QWidget* const widget = ui->pharmaciesScrollArea->widget();
+
+    AppPharmConnMultyLoader loader
+    {
+        m_AppointmentInfo.GetAppointment().GetID(), true
+    };
+
+    for (qsizetype i = 0; i < loader.GetCount(); ++i)
+    {
+        const AppPharmConnRecord appPharmConn
+        {
+            loader.GetCurrent<AppPharmConnRecord>()
+        };
+
+        const PharmaciesRecord pharmacy{ appPharmConn.GetPharmacyID() };
+
+        verticalLayout->addWidget(new PharmacyViewWidget
+        {
+            pharmacy, widget
+        });
+    }
 }
 
 void AppointmentFullWidget::SetDiagnosis() noexcept

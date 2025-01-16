@@ -25,6 +25,7 @@ private:
 
     void SetDoctorSpecialization() noexcept;
     void SetInfo() noexcept;
+    void SetPharmacies() noexcept;
     void SetDiagnosis() noexcept;
     void SetRecommendations() noexcept;
 

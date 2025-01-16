@@ -11,7 +11,7 @@ PatientAppointment::PatientAppointment(AppointmentsRecord&& appointment,
     ui->setupUi(this);
     installEventFilter(new OpenAppointmentFilter{ parent , m_AppointmentInfo });
 
-    SetInformation();
+    UpdateInformation();
 }
 
 PatientAppointment::PatientAppointment(const DefaultRecord::ID ID,
@@ -22,7 +22,7 @@ PatientAppointment::PatientAppointment(const DefaultRecord::ID ID,
     ui->setupUi(this);
     installEventFilter(new OpenAppointmentFilter{ this, m_AppointmentInfo });
 
-    SetInformation();
+    UpdateInformation();
 }
 
 PatientAppointment::~PatientAppointment()
@@ -30,7 +30,12 @@ PatientAppointment::~PatientAppointment()
     delete ui;
 }
 
-void PatientAppointment::SetInformation() noexcept
+QSize PatientAppointment::sizeHint() const
+{
+    return { width(), height() };
+}
+
+void PatientAppointment::UpdateInformation() noexcept
 {
     const PeopleRecord& person = m_AppointmentInfo.GetDoctorPerson();
 

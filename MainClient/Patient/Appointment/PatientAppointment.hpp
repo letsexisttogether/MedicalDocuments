@@ -24,13 +24,10 @@ public:
 
     ~PatientAppointment();
 
-    QSize sizeHint() const override
-    {
-        return { width(), height() };
-    }
+    QSize sizeHint() const override;
 
 private:
-    void SetInformation() noexcept;
+    void UpdateInformation() noexcept;
 
 private:
     Ui::PatientAppointment *ui;
