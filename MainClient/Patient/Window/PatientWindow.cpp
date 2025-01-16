@@ -1,7 +1,7 @@
 #include "PatientWindow.hpp"
 #include "ui_PatientWindow.h"
 
-#include "SQL/Loaders/MultyRecordLoader.hpp"
+#include "SQL/Loaders/Appointments/AppointmentsMultyLoader.hpp"
 #include "SQL/Tables/People/PeopleRecord.hpp"
 #include "MainClient/Patient/Appointment/PatientAppointment.hpp"
 #include "appointmentwindow.h"
@@ -68,7 +68,7 @@ void PatientWindow::SetAppointments() noexcept
 
     QWidget* const scrollAreaWidget = ui->scrollArea->widget();
 
-    MultyRecordLoader loader{ m_Patient.GetID(), false };
+    AppointmentsMultyLoader loader{ m_Patient.GetID(), false };
 
     for (qsizetype i = 0; i < loader.GetCount() + 20; ++i)
     {

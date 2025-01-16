@@ -1,7 +1,7 @@
 #ifndef MULTYRECORDLOADER_H
 #define MULTYRECORDLOADER_H
 
-#include "SQL/Tables/Appointments/AppointmentsRecord.hpp"
+#include "SQL/Tables/DefaultRecord.hpp"
 
 class MultyRecordLoader
 {
@@ -13,7 +13,7 @@ public:
     MultyRecordLoader(const MultyRecordLoader&) = default;
     MultyRecordLoader(MultyRecordLoader&&) = default;
 
-    MultyRecordLoader(const ID ID, const bool isByDoctor);
+    explicit MultyRecordLoader(QString&& tableName);
 
     ~MultyRecordLoader() = default;
 
@@ -25,12 +25,13 @@ public:
     MultyRecordLoader& operator = (const MultyRecordLoader&) = default;
     MultyRecordLoader& operator = (MultyRecordLoader&&) = default;
 
-private:
+protected:
     void LoadData(const QString& column, const QString& value) noexcept;
 
 private:
-    qsizetype m_Current{};
+    QString m_TableName;
 
+    qsizetype m_Current{};
     QList<TableRecord> m_Records{};
 };
 

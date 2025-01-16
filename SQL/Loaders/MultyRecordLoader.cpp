@@ -1,17 +1,10 @@
 #include "MultyRecordLoader.hpp"
 
-MultyRecordLoader::MultyRecordLoader(const DefaultRecord::ID ID,
-    const bool isByDoctor)
-{
-    if (isByDoctor)
-    {
-        LoadData("DoctorID", QString::number(ID));
-    }
-    else
-    {
-        LoadData("PatientID", QString::number(ID));
-    }
-}
+#include "SQL/Tables/Appointments/AppointmentsRecord.hpp"
+
+MultyRecordLoader::MultyRecordLoader(QString&& tableName)
+    : m_TableName{ std::move(tableName) }
+{}
 
 template <class _Record>
 _Record MultyRecordLoader::GetCurrent() noexcept
@@ -38,8 +31,8 @@ void MultyRecordLoader::LoadData(const QString& column,
 
     const QString query
     {
-        QString("SELECT ID FROM Appointments "
-                "WHERE %1 = '%2'")
+        QString("SELECT ID FROM %1 WHERE %2 = '%3'")
+            .arg(m_TableName)
             .arg(column)
             .arg(value)
     };
