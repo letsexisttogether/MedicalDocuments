@@ -27,6 +27,9 @@
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
+   </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;МЕДИЧНА ДОКУМЕНТАЦІЯ&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Форма первинної облікової документації&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;№ 028\о&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Затвердженно Наказ МОЗ 14.02.20212 №110&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
@@ -44,6 +47,9 @@
     <font>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ліцензія №730 від 01.01.2025&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -63,6 +69,9 @@
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
+   </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Код закладу за ЗКПО: 4118684&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
@@ -81,6 +90,9 @@
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
+   </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;ДІАГНОЗ&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
@@ -98,6 +110,9 @@
     <font>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -131,63 +146,38 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="1">
-      <widget class="QLabel" name="medNumberName">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Медична карта №&lt;/span&gt;: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="birthdate">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Дата народження&lt;/span&gt;: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="doctor">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Лікар&lt;/span&gt;: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="0">
       <widget class="QLabel" name="gender">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
+         <bold>true</bold>
         </font>
        </property>
+       <property name="locale">
+        <locale language="Ukrainian" country="Ukraine"/>
+       </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Стать&lt;/span&gt;: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>Стать: </string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::TextFormat::PlainText</enum>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="date">
+     <item row="0" column="1">
+      <widget class="QLabel" name="medNumber">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
+         <bold>true</bold>
         </font>
        </property>
+       <property name="locale">
+        <locale language="Ukrainian" country="Ukraine"/>
+       </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Дата прийому&lt;/span&gt;: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>Медична карта №: </string>
        </property>
       </widget>
      </item>
@@ -196,10 +186,71 @@
        <property name="font">
         <font>
          <pointsize>12</pointsize>
+         <bold>true</bold>
         </font>
        </property>
+       <property name="locale">
+        <locale language="Ukrainian" country="Ukraine"/>
+       </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Пацієнт&lt;/span&gt;: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>Пацієнт: </string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::TextFormat::PlainText</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="birthdate">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="locale">
+        <locale language="Ukrainian" country="Ukraine"/>
+       </property>
+       <property name="text">
+        <string>Дата народження: </string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::TextFormat::PlainText</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="date">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="locale">
+        <locale language="Ukrainian" country="Ukraine"/>
+       </property>
+       <property name="text">
+        <string>Дата прийому: </string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="doctor">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="locale">
+        <locale language="Ukrainian" country="Ukraine"/>
+       </property>
+       <property name="text">
+        <string>Лікар: </string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::TextFormat::PlainText</enum>
        </property>
       </widget>
      </item>
@@ -239,6 +290,9 @@
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
+   </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Лікарські засоби&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
@@ -256,6 +310,9 @@
     <font>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Рекомендовано:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -275,6 +332,9 @@
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="locale">
+    <locale language="Ukrainian" country="Ukraine"/>
+   </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
@@ -290,19 +350,6 @@
    </property>
    <layout class="QHBoxLayout" name="specialityLayout">
     <item>
-     <widget class="QLabel" name="specialityName">
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Косультативний висновок лікаря &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QLabel" name="speciality">
       <property name="font">
        <font>
@@ -310,8 +357,14 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="locale">
+       <locale language="Ukrainian" country="Ukraine"/>
+      </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>Косультативний висновок лікаря </string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::TextFormat::PlainText</enum>
       </property>
      </widget>
     </item>

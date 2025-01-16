@@ -3,8 +3,9 @@
 
 #include "SQL/Tables/Appointments/AppointmentsRecord.hpp"
 #include "SQL/Tables/Doctors/DoctorsRecord.hpp"
-#include "SQL/Tables/People/PeopleRecord.hpp"
 #include "SQL/Tables/Specializations/SpecializationsRecord.hpp"
+#include "SQL/Tables/Patients/PatientsRecord.hpp"
+#include "SQL/Tables/People/PeopleRecord.hpp"
 
 class AppointmentInfo
 {
@@ -23,7 +24,10 @@ public:
     const DoctorsRecord& GetDoctor() const noexcept;
     const SpecializationsRecord& GetSpecialization() const noexcept;
 
-    const PeopleRecord& GetPerson() const noexcept;
+    const PatientsRecord& GetPatient() const noexcept;
+
+    const PeopleRecord& GetDoctorPerson() const noexcept;
+    const PeopleRecord& GetPatientPerson() const noexcept;
 
 private:
     AppointmentsRecord m_Appointment;
@@ -31,7 +35,10 @@ private:
     DoctorsRecord m_Doctor;
     SpecializationsRecord m_Specialization;
 
-    PeopleRecord m_Person;
+    PatientsRecord m_Patient;
+
+    PeopleRecord m_DoctorPerson;
+    PeopleRecord m_PatientPerson;
 };
 
 #endif // APPOINTMENTINFO_HPP

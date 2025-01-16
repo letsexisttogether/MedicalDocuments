@@ -3,9 +3,11 @@
 AppointmentInfo::AppointmentInfo(AppointmentsRecord&& appointment,
     bool isPartialLoad)
     : m_Appointment{ std::move(appointment) },
-    m_Doctor{ appointment.GetDoctorID() },
+    m_Doctor{ m_Appointment.GetDoctorID() },
     m_Specialization{ m_Doctor.GetSpecializationID() },
-    m_Person{ m_Doctor.GetPersonID() }
+    m_Patient{ m_Appointment.GetPatientID() },
+    m_DoctorPerson{ m_Doctor.GetPersonID() },
+    m_PatientPerson{ m_Patient.GetPersonID() }
 {}
 
 const AppointmentsRecord& AppointmentInfo::GetAppointment() const noexcept
@@ -23,7 +25,17 @@ const SpecializationsRecord& AppointmentInfo::GetSpecialization()
     return m_Specialization;
 }
 
-const PeopleRecord& AppointmentInfo::GetPerson() const noexcept
+const PatientsRecord& AppointmentInfo::GetPatient() const noexcept
 {
-    return m_Person;
+    return m_Patient;
+}
+
+const PeopleRecord& AppointmentInfo::GetDoctorPerson() const noexcept
+{
+    return m_DoctorPerson;
+}
+
+const PeopleRecord& AppointmentInfo::GetPatientPerson() const noexcept
+{
+    return m_PatientPerson;
 }

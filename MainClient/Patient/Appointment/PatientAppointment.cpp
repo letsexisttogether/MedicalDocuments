@@ -32,7 +32,7 @@ PatientAppointment::~PatientAppointment()
 
 void PatientAppointment::SetInformation() noexcept
 {
-    const PeopleRecord& person = m_AppointmentInfo.GetPerson();
+    const PeopleRecord& person = m_AppointmentInfo.GetDoctorPerson();
 
     const AppointmentsRecord& appointment
         = m_AppointmentInfo.GetAppointment();
