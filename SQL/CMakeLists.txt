@@ -36,8 +36,8 @@ set(SQL_SOURCES
 	${CD}/Tables/Pharmacies/PharmaciesRecord.hpp
 	${CD}/Tables/Pharmacies/PharmaciesRecord.cpp
 
-	${CD}/Loaders/AppointmentsLoader.hpp
-	${CD}/Loaders/AppointmentsLoader.cpp
+	${CD}/Loaders/MultyRecordLoader.hpp
+	${CD}/Loaders/MultyRecordLoader.cpp
 
 	PARENT_SCOPE
 )
