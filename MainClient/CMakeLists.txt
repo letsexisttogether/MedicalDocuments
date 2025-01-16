@@ -14,5 +14,15 @@ set(MAINCLIENT_SOURCES
 	${CD}/Patient/Appointment/PatientAppointment.cpp
 	${CD}/Patient/Appointment/PatientAppointment.ui
 
+	${CD}/General/OpenAppointmentFilter/OpenAppointmentFilter.hpp
+	${CD}/General/OpenAppointmentFilter/OpenAppointmentFilter.cpp
+
+	${CD}/General/AppointmentInfo/AppointmentInfo.hpp
+	${CD}/General/AppointmentInfo/AppointmentInfo.cpp
+
+	${CD}/General/AppointmentFullWidget/AppointmentFullWidget.hpp
+	${CD}/General/AppointmentFullWidget/AppointmentFullWidget.cpp
+	${CD}/General/AppointmentFullWidget/AppointmentFullWidget.ui
+
 	PARENT_SCOPE
 )

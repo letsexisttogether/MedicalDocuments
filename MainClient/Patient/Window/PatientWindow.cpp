@@ -63,42 +63,25 @@ void PatientWindow::SetBIO() noexcept
 
 void PatientWindow::SetAppointments() noexcept
 {
-    QWidget *scrollWidget = ui->scrollArea->widget();
-    QVBoxLayout *scrollLayout = qobject_cast<QVBoxLayout *>(scrollWidget->layout());
-    if (!scrollLayout)
-    {
-        // Якщо layout не налаштований у Designer, створюємо його
-        scrollLayout = new QVBoxLayout(scrollWidget);
-        scrollWidget->setLayout(scrollLayout);
-    }
+    QVBoxLayout* const verticalLayout = ui->verticalLayout;
+    verticalLayout->setAlignment(Qt::AlignTop);
+
+    QWidget* const scrollAreaWidget = ui->scrollArea->widget();
 
     AppointmentsLoader loader{ m_Patient.GetID(), false };
 
-    for (qsizetype i = 0; i < loader.GetCount(); ++i)
+    for (qsizetype i = 0; i < loader.GetCount() + 20; ++i)
     {
-        scrollLayout->addWidget(new PatientAppointment
+        verticalLayout->addWidget(new PatientAppointment
         {
-            loader.GetCurrent()
+            loader.GetCurrent(), scrollAreaWidget
         });
     }
 
     /*
-    // Додаємо записи динамічно
-    for (int i = 1; i <= 10; ++i)
+    verticalLayout->addItem(new QSpacerItem
     {
-        QWidget *recordWidget = new QWidget(this);
-        QVBoxLayout *recordLayout = new QVBoxLayout(recordWidget);
-
-        // Додаємо текстові записи
-        recordLayout->addWidget(new QLabel(QString("Номер пацієнта %1: Ім'я %2").arg(i).arg(QString("Влад")), this));
-        recordLayout->addWidget(new QLabel(QString("Запис %1: Текст 2").arg(i), this));
-        recordLayout->addWidget(new QLabel(QString("Запис %1: Текст 3").arg(i), this));
-
-        // Налаштовуємо стиль запису
-        recordWidget->setStyleSheet("border: 1px solid gray; margin: 5px; padding: 10px;");
-
-        // Додаємо до прокрутки
-        scrollLayout->addWidget(recordWidget);
-    }
+        50, 40
+    });
     */
 }

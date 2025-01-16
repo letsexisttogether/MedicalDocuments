@@ -1,16 +1,15 @@
 #include "PatientAppointment.hpp"
 #include "ui_PatientAppointment.h"
 
-#include "SQL/Tables/Doctors/DoctorsRecord.hpp"
-#include "SQL/Tables/People/PeopleRecord.hpp"
-#include "SQL/Tables/Specializations/SpecializationsRecord.hpp"
+#include "MainClient/General/OpenAppointmentFilter/OpenAppointmentFilter.hpp"
 
 PatientAppointment::PatientAppointment(AppointmentsRecord&& appointment,
-       QWidget *parent)
+    QWidget *parent)
     : QWidget{ parent }, ui{ new Ui::PatientAppointment },
-    m_Appointment{ std::move(appointment) }
+    m_AppointmentInfo{ std::move(appointment) }
 {
     ui->setupUi(this);
+    installEventFilter(new OpenAppointmentFilter{ parent , m_AppointmentInfo });
 
     SetInformation();
 }
@@ -18,9 +17,10 @@ PatientAppointment::PatientAppointment(AppointmentsRecord&& appointment,
 PatientAppointment::PatientAppointment(const DefaultRecord::ID ID,
     const bool isByDoctor, QWidget *parent)
     : QWidget{ parent }, ui{ new Ui::PatientAppointment },
-    m_Appointment{ ID , isByDoctor }
+    m_AppointmentInfo{ AppointmentsRecord{ ID, isByDoctor } }
 {
     ui->setupUi(this);
+    installEventFilter(new OpenAppointmentFilter{ this, m_AppointmentInfo });
 
     SetInformation();
 }
@@ -32,10 +32,12 @@ PatientAppointment::~PatientAppointment()
 
 void PatientAppointment::SetInformation() noexcept
 {
-    const DoctorsRecord doctor{ m_Appointment.GetDoctorID() };
+    const PeopleRecord& person = m_AppointmentInfo.GetPerson();
 
-    const PeopleRecord person{ doctor.GetPersonID() };
-    const SpecializationsRecord specialization{ doctor.GetSpecializationID() };
+    const AppointmentsRecord& appointment
+        = m_AppointmentInfo.GetAppointment();
+    const SpecializationsRecord& specialization
+        = m_AppointmentInfo.GetSpecialization();
 
     const QString fullName
     {
@@ -48,7 +50,7 @@ void PatientAppointment::SetInformation() noexcept
     ui->specialization->setText(specialization.GetTitle());
     ui->specialization->setToolTip(specialization.GetDescription());
 
-    ui->date->setText(m_Appointment.GetDate().toString("dd.MM.yyyy"));
+    ui->date->setText(appointment.GetDate().toString("dd.MM.yyyy"));
 
-    ui->diagnosis->setText(m_Appointment.GetDiagnosis());
+    ui->diagnosis->setText(appointment.GetDiagnosis());
 }

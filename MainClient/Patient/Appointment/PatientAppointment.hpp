@@ -2,8 +2,9 @@
 #define PATIENTAPPOINTMENT_HPP
 
 #include <QWidget>
+#include <QMouseEvent>
 
-#include "SQL/Tables/Appointments/AppointmentsRecord.hpp"
+#include "MainClient/General/AppointmentInfo/AppointmentInfo.hpp"
 
 namespace Ui
 {
@@ -23,13 +24,18 @@ public:
 
     ~PatientAppointment();
 
+    QSize sizeHint() const override
+    {
+        return { width(), height() };
+    }
+
 private:
     void SetInformation() noexcept;
 
 private:
     Ui::PatientAppointment *ui;
 
-    AppointmentsRecord m_Appointment;
+    AppointmentInfo m_AppointmentInfo;
 };
 
 #endif // PATIENTAPPOINTMENT_HPP

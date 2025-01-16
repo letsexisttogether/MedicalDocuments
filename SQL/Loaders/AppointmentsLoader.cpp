@@ -23,7 +23,7 @@ AppointmentsRecord AppointmentsLoader::GetCurrent() noexcept
        AppointmentsRecord{ ID }
     };
 
-    m_Current += ((m_Current) < m_Appointments.count());
+    m_Current += ((m_Current + 1) < m_Appointments.count());
 
     return appointment;
 }
@@ -32,7 +32,6 @@ const qsizetype AppointmentsLoader::GetCount() const noexcept
 {
     return m_Appointments.count();
 }
-
 
 void AppointmentsLoader::LoadData(const QString& column,
     const QString& value) noexcept
