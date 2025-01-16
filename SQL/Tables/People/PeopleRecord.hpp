@@ -3,7 +3,6 @@
 
 #include <QDate>
 
-#include "SQL/Manager/SQLManager.hpp"
 #include "SQL/Tables/DefaultRecord.hpp"
 
 class PeopleRecord : public DefaultRecord
@@ -13,7 +12,7 @@ public:
     PeopleRecord(const PeopleRecord&) = default;
     PeopleRecord(PeopleRecord&&) = default;
 
-    explicit PeopleRecord(const SQLManager::ID ID);
+    explicit PeopleRecord(const ID ID);
 
     ~PeopleRecord() = default;
 

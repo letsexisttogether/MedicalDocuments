@@ -29,6 +29,13 @@ set(SQL_SOURCES
 	${CD}/Tables/Appointments/AppointmentsRecord.hpp
 	${CD}/Tables/Appointments/AppointmentsRecord.cpp
 
+	${CD}/Tables/AppPharmConn/AppPharmConnRecord.hpp
+	${CD}/Tables/AppPharmConn/AppPharmConnRecord.cpp
+
+
+	${CD}/Tables/Pharmacies/PharmaciesRecord.hpp
+	${CD}/Tables/Pharmacies/PharmaciesRecord.cpp
+
 	${CD}/Loaders/AppointmentsLoader.hpp
 	${CD}/Loaders/AppointmentsLoader.cpp
 

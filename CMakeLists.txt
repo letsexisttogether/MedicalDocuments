@@ -50,6 +50,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 		${AUTHORIZATION_SOURCES}
 		${SQL_SOURCES}
 		${MAINCLIENT_SOURCES}
+		SQL/Tables/Pharmacies/PharmaciesRecord.hpp SQL/Tables/Pharmacies/PharmaciesRecord.cpp
 	)
 else()
 	if(ANDROID)
