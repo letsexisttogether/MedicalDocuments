@@ -10,10 +10,36 @@ PatientsRecord::PatientsRecord(const ID ID)
     LoadData("ID", QString::number(ID));
 }
 
+PatientsRecord::PatientsRecord(const ID personID, const QString& email,
+    const ID passwordID, const QString& phoneNumber,
+    const QString& address)
+    : DefaultRecord{ "Patients" },
+    m_PersonID{ personID }, m_Email{ email }, m_PasswordID{ passwordID },
+    m_PhoneNumber{ phoneNumber }, m_Address{ address }
+{}
+
 PatientsRecord::PatientsRecord(const QString& email)
     : DefaultRecord{ "Patients "}
 {
     LoadData("Email", email);
+}
+
+void PatientsRecord::InsertData() noexcept
+{
+    SQLManager& manager{ SQLManager::GetInstance() };
+
+    const QString query
+    {
+        QString("INSERT INTO %1 VALUES (%2, '%3', %4, '%5', '%6')")
+            .arg(GetTableName())
+            .arg(m_PersonID)
+            .arg(m_Email)
+            .arg(m_PasswordID)
+            .arg(m_PhoneNumber)
+            .arg(m_Address)
+    };
+
+    m_ID = manager.InsertDataToTable(query);
 }
 
 DefaultRecord::ID PatientsRecord::GetPersonID() const

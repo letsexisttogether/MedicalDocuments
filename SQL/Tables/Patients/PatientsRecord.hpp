@@ -14,8 +14,13 @@ public:
 
     explicit PatientsRecord(const ID ID);
     explicit PatientsRecord(const QString& email);
+    PatientsRecord(const ID personID, const QString& email,
+        const ID passwordID, const QString& phoneNumber,
+        const QString& address);
 
     ~PatientsRecord() = default;
+
+    void InsertData() noexcept override;
 
     ID GetPersonID() const;
 

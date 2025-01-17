@@ -13,8 +13,13 @@ public:
     PeopleRecord(PeopleRecord&&) = default;
 
     explicit PeopleRecord(const ID ID);
+    PeopleRecord(const QString& firstName, const QString& lastName,
+        const QString& patrynomic, const bool gender,
+        const QDate& birthdate);
 
     ~PeopleRecord() = default;
+
+    void InsertData() noexcept override;
 
     const QString& GetFirstName() const noexcept;
     const QString& GetLastName() const noexcept;

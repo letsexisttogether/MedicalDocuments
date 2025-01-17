@@ -10,6 +10,32 @@ PeopleRecord::PeopleRecord(const ID ID)
     LoadData("ID", QString::number(ID));
 }
 
+PeopleRecord::PeopleRecord(const QString& firstName,
+    const QString& lastName, const QString& patrynomic,
+    const bool gender, const QDate& birthdate)
+    : DefaultRecord{ "People" },
+    m_FirstName{ firstName }, m_LastName{ lastName },
+    m_Patrynomic{ patrynomic }, m_Gender{ gender }, m_Birthdate{ birthdate }
+{}
+
+void PeopleRecord::InsertData() noexcept
+{
+    SQLManager& manager{ SQLManager::GetInstance() };
+
+    const QString query
+    {
+        QString("INSERT INTO %1 VALUES ('%2', '%3', '%4', %5, '%6');")
+            .arg(GetTableName())
+            .arg(m_FirstName)
+            .arg(m_LastName)
+            .arg(m_Patrynomic)
+            .arg(m_Gender)
+            .arg(m_Birthdate.toString("yyyy-MM-dd"))
+    };
+
+    m_ID = manager.InsertDataToTable(query);
+}
+
 const QString& PeopleRecord::GetFirstName() const noexcept
 {
     return m_FirstName;

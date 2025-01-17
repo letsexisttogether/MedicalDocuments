@@ -10,9 +10,12 @@ public:
     PasswordsRecord(const PasswordsRecord&) = default;
     PasswordsRecord(PasswordsRecord&&) = default;
 
-    PasswordsRecord(const ID ID);
+    explicit PasswordsRecord(const ID ID);
+    PasswordsRecord(const QString& encrypted, const QString& salt);
 
     ~PasswordsRecord() = default;
+
+    void InsertData() noexcept override;
 
     const QString& GetEncrypted() const noexcept;
     const QString& GetSalt() const noexcept;

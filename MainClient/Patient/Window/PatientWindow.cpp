@@ -70,7 +70,7 @@ void PatientWindow::SetAppointments() noexcept
 
     AppointmentsMultyLoader loader{ m_Patient.GetID(), false };
 
-    for (qsizetype i = 0; i < loader.GetCount() + 20; ++i)
+    for (qsizetype i = 0; i < loader.GetCount(); ++i)
     {
         verticalLayout->addWidget(new PatientAppointment
         {

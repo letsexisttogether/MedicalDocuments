@@ -5,6 +5,9 @@
 
 #include "Authorization/FieldCheck/DefaultCheckers/DefaultPasswordChecker.hpp"
 #include "Authorization/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp"
+#include "SQL/Tables/People/PeopleRecord.hpp"
+#include "SQL/Tables/Patients/PatientsRecord.hpp"
+#include "SQL/Tables/Passwords/PasswordsRecord.hpp"
 
 SignUp::SignUp(QWidget *parent)
     : QWidget(parent), ui(new Ui::SignUp)
@@ -90,74 +93,56 @@ void SignUp::HandleReturnClick()
 
 SQLManager::ID SignUp::AddPerson() noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
-    const QString firstName{ ui->firstName->text() };
-    const QString lastName{ ui->lastName->text() };
-    const QString patronymic{ ui->patronymic->text() };
-
-
-    const qint16 isMale = (ui->maleRadioButton->isChecked());
-
-    const QDate birthday{ ui->birthdayCalendar->selectedDate() };
-    const QString birthdayString{ birthday.toString("yyyy-MM-dd") };
-
-    const QString query
+    PeopleRecord person
     {
-        QString("INSERT INTO People (FirstName, LastName, "
-            "Patronymic, Gender, Birthdate) "
-            "VALUES (N'%1', N'%2', N'%3', %4, '%5');")
-        .arg(firstName, lastName, patronymic)
-        .arg(isMale)
-        .arg(birthdayString)
+        ui->firstName->text(),
+        ui->lastName->text(),
+        ui->patronymic->text(),
+        ui->maleRadioButton->isChecked(),
+        ui->birthdayCalendar->selectedDate()
     };
 
-    return manager.InsertDataToTable(query);
+    person.InsertData();
+
+    return person.GetID();
 }
 
 SQLManager::ID SignUp::AddPassword() noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
     const QString enteredPassword{ ui->password->GetEditValue() };
     const QString salt{ m_Encryptor.GenerateSalt() };
 
-    const QString password{ m_Encryptor.Encrypt(enteredPassword, salt) };
-
-    const QString query
+    const QString encryptedPassword
     {
-        QString("INSERT INTO Passwords (Encrypted, Salt) "
-            "VALUES ('%1', '%2');")
-        .arg(password)
-        .arg(salt)
+        m_Encryptor.Encrypt(enteredPassword, salt)
     };
 
-    return manager.InsertDataToTable(query);
+    PasswordsRecord password
+    {
+        encryptedPassword,
+        salt
+    };
+
+    password.InsertData();
+
+    return password.GetID();
 }
 
 SQLManager::ID SignUp::AddPatient(const SQLManager::ID personID,
     const SQLManager::ID passwordID) noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
-    const QString email{ ui->email->GetEditValue() };
-
-    const QString phoneNumber{ ui->phoneNumber->text() };
-
-    const QString address{ ui->address->text() };
-
-    const QString query
+    PatientsRecord patient
     {
-        QString("INSERT INTO Patients (PersonID, Email, PasswordID, PhoneNumber, Address) "
-                "VALUES (%1, '%2', %3, N'%4', N'%5');")
-        .arg(personID)
-        .arg(email)
-        .arg(passwordID)
-        .arg(phoneNumber)
-        .arg(address)
+        personID,
+        ui->email->GetEditValue(),
+        passwordID,
+        ui->phoneNumber->text(),
+        ui->address->text()
     };
 
-    return manager.InsertDataToTable(query);
+    patient.InsertData();
+
+    return patient.GetID();
 }
 
 void SignUp::ResetEditFields() noexcept
