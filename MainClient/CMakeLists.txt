@@ -18,6 +18,15 @@ set(MAINCLIENT_SOURCES
 	${CD}/Doctor/AppointmentCreator/AppointmentCreator.cpp
 	${CD}/Doctor/AppointmentCreator/AppointmentCreator.ui
 
+	${CD}/Doctor/PharmacyCreator/PharmacyCreator.hpp
+	${CD}/Doctor/PharmacyCreator/PharmacyCreator.cpp
+	${CD}/Doctor/PharmacyCreator/PharmacyCreator.ui
+
+
+	${CD}/Doctor/PharmacySelector/PharmacySelector.hpp
+	${CD}/Doctor/PharmacySelector/PharmacySelector.cpp
+	${CD}/Doctor/PharmacySelector/PharmacySelector.ui
+
 	${CD}/General/OpenAppointmentFilter/OpenAppointmentFilter.hpp
 	${CD}/General/OpenAppointmentFilter/OpenAppointmentFilter.cpp
 

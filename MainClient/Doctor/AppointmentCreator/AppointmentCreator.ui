@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>950</height>
+    <height>1000</height>
    </rect>
   </property>
   <property name="focusPolicy">
@@ -84,7 +84,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>740</y>
+      <y>780</y>
       <width>201</width>
       <height>49</height>
      </rect>
@@ -100,77 +100,6 @@
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Рекомендовано:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
-   </widget>
-   <widget class="QFrame" name="pharmaciesFrame">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>550</y>
-      <width>781</width>
-      <height>181</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
-    </property>
-    <property name="midLineWidth">
-     <number>1</number>
-    </property>
-    <widget class="QWidget" name="verticalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>761</width>
-       <height>161</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QScrollArea" name="pharmaciesScrollArea">
-        <property name="frameShape">
-         <enum>QFrame::Shape::NoFrame</enum>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>759</width>
-           <height>159</height>
-          </rect>
-         </property>
-         <layout class="QVBoxLayout" name="pharmaciesLayout">
-          <property name="spacing">
-           <number>2</number>
-          </property>
-          <property name="leftMargin">
-           <number>2</number>
-          </property>
-          <property name="topMargin">
-           <number>2</number>
-          </property>
-          <property name="rightMargin">
-           <number>2</number>
-          </property>
-          <property name="bottomMargin">
-           <number>2</number>
-          </property>
-         </layout>
-        </widget>
-       </widget>
-      </item>
-     </layout>
-    </widget>
    </widget>
    <widget class="QFrame" name="infoFrame">
     <property name="geometry">
@@ -403,7 +332,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>780</y>
+      <y>830</y>
       <width>771</width>
       <height>61</height>
      </rect>
@@ -417,8 +346,8 @@
    <widget class="QPushButton" name="declineButton">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>860</y>
+      <x>70</x>
+      <y>900</y>
       <width>161</width>
       <height>61</height>
      </rect>
@@ -437,7 +366,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>860</y>
+      <y>910</y>
       <width>161</width>
       <height>61</height>
      </rect>
@@ -452,9 +381,27 @@
      <string>Зберігти</string>
     </property>
    </widget>
+   <widget class="PharmacyCreator" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>550</y>
+      <width>785</width>
+      <height>245</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PharmacyCreator</class>
+   <extends>QWidget</extends>
+   <header location="global">MainClient/Doctor/PharmacyCreator/PharmacyCreator.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

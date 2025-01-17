@@ -2,6 +2,7 @@
 
 #include "SQL/Tables/Appointments/AppointmentsRecord.hpp"
 #include "SQL/Tables/AppPharmConn/AppPharmConnRecord.hpp"
+#include "SQL/Tables/Pharmacies/PharmaciesRecord.hpp"
 
 MultyRecordLoader::MultyRecordLoader(QString&& tableName)
     : m_TableName{ std::move(tableName) }
@@ -99,4 +100,7 @@ template AppointmentsRecord MultyRecordLoader::GetCurrent<AppointmentsRecord>()
     noexcept;
 
 template AppPharmConnRecord MultyRecordLoader::GetCurrent<AppPharmConnRecord>()
+    noexcept;
+
+template PharmaciesRecord MultyRecordLoader::GetCurrent<PharmaciesRecord>()
     noexcept;

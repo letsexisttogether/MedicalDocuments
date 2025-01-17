@@ -41,4 +41,5 @@ private:
 
     PatientsRecord m_Patient;
 };
+
 #endif // MAINWINDOW_H

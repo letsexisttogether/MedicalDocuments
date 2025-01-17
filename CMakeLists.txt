@@ -49,6 +49,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 		${AUTHORIZATION_SOURCES}
 		${SQL_SOURCES}
 		${MAINCLIENT_SOURCES}
+		SQL/Loaders/Pharmacies/PharmacyMultyLoader.hpp SQL/Loaders/Pharmacies/PharmacyMultyLoader.cpp
 	)
 else()
 	if(ANDROID)
