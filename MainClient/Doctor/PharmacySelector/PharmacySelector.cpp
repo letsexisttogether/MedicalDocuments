@@ -16,15 +16,31 @@ PharmacySelector::~PharmacySelector()
     delete ui;
 }
 
+void PharmacySelector::InsertAppPharmConn
+    (const DefaultRecord::ID appointmentID) const noexcept
+{
+    qsizetype currentIndex = ui->pharmacyComboBox->currentIndex();
+
+    AppPharmConnRecord appPharmConn
+    {
+        appointmentID,
+        m_Pharmacies[currentIndex].GetID(),
+        ui->amount->toPlainText(),
+        ui->streak->text().toUShort()
+    };
+
+    appPharmConn.InsertData();
+}
+
+QSize PharmacySelector::sizeHint() const
+{
+    return { width(), height() };
+}
+
 void PharmacySelector::FillPharmacies() noexcept
 {
     for (const auto& pharmacy : m_Pharmacies)
     {
         ui->pharmacyComboBox->addItem(pharmacy.GetTitle());
     }
-}
-
-QSize PharmacySelector::sizeHint() const
-{
-    return { width(), height() };
 }

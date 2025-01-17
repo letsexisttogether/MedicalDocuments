@@ -381,7 +381,7 @@
      <string>Зберігти</string>
     </property>
    </widget>
-   <widget class="PharmacyCreator" name="widget" native="true">
+   <widget class="PharmacyCreator" name="pharmacies" native="true">
     <property name="geometry">
      <rect>
       <x>10</x>

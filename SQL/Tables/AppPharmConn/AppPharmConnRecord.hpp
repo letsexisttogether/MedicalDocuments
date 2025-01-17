@@ -12,8 +12,12 @@ public:
     AppPharmConnRecord(AppPharmConnRecord&&) = default;
 
     explicit AppPharmConnRecord(const ID ID);
+    AppPharmConnRecord(const ID appointmentID, const ID pharmacyID,
+        const QString& amount, const quint16 dayStreak);
 
     ~AppPharmConnRecord() = default;
+
+    virtual void InsertData() noexcept override;
 
     const ID GetAppointmentID() const noexcept;
     const ID GetPharmacyID() const noexcept;

@@ -10,6 +10,30 @@ AppPharmConnRecord::AppPharmConnRecord(const ID ID)
     LoadData("ID", QString::number(ID));
 }
 
+AppPharmConnRecord::AppPharmConnRecord(const ID appointmentID,
+    const ID pharmacyID, const QString& amount, const quint16 dayStreak)
+    : DefaultRecord{ "AppPharmConn" }, m_AppointmentID{ appointmentID },
+    m_PharmacyID{ pharmacyID }, m_Amount{ amount },
+    m_DayStreak{ dayStreak }
+{}
+
+void AppPharmConnRecord::InsertData() noexcept
+{
+    SQLManager& manager{ SQLManager::GetInstance() };
+
+    const QString query
+    {
+        QString("INSERT INTO %1 VALUES (%2, %3, '%4', %5)")
+            .arg(GetTableName())
+            .arg(m_AppointmentID)
+            .arg(m_PharmacyID)
+            .arg(m_Amount)
+            .arg(m_DayStreak)
+    };
+
+    m_ID = manager.InsertDataToTable(query);
+}
+
 const DefaultRecord::ID AppPharmConnRecord::GetAppointmentID() const noexcept
 {
     return m_AppointmentID;

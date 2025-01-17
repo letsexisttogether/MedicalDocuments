@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "SQL/Tables/Pharmacies/PharmaciesRecord.hpp"
+#include "SQL/Tables/AppPharmConn/AppPharmConnRecord.hpp"
 
 namespace Ui
 {
@@ -20,6 +21,9 @@ public:
 
     ~PharmacySelector();
 
+    void InsertAppPharmConn(const DefaultRecord::ID appointmentID)
+        const noexcept;
+
     QSize sizeHint() const override;
 
 private:
@@ -28,7 +32,7 @@ private:
 private:
     Ui::PharmacySelector *ui;
 
-    const QList<PharmaciesRecord> m_Pharmacies;
+    const QList<PharmaciesRecord>& m_Pharmacies;
 };
 
 #endif // PHARMACYSELECTOR_HPP

@@ -19,7 +19,7 @@ public:
 
     ~PharmacyCreator();
 
-    void InsertPharmacies() noexcept;
+    void InsertAppPharmConns(const DefaultRecord::ID appointmentID) noexcept;
 
 private slots:
     void OnAddPharmacyClicked();

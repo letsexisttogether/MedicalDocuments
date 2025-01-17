@@ -37,6 +37,8 @@ void AppointmentCreator::OnSaveClicked()
 
     appointment.InsertData();
 
+    ui->pharmacies->InsertAppPharmConns(appointment.GetID());
+
     close();
 }
 
