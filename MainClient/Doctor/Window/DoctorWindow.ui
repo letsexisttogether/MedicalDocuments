@@ -14,73 +14,37 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="openAppointmentWindowButton">
+   <widget class="QPushButton" name="addAppointment">
     <property name="geometry">
      <rect>
       <x>530</x>
       <y>710</y>
-      <width>121</width>
-      <height>31</height>
+      <width>141</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Додати запис</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>90</y>
-      <width>121</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Оберіть пацієнта</string>
-    </property>
-   </widget>
-   <widget class="QScrollArea" name="scrollArea">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>140</y>
-      <width>1181</width>
-      <height>551</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>1179</width>
-       <height>549</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QComboBox" name="patientsBox">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>90</y>
-      <width>301</width>
-      <height>26</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="specialization">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>50</y>
-      <width>101</width>
-      <height>20</height>
+      <x>170</x>
+      <y>80</y>
+      <width>161</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>?</string>
@@ -90,10 +54,16 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
-      <width>81</width>
-      <height>20</height>
+      <y>80</y>
+      <width>151</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Спеціальність:</string>
@@ -102,11 +72,16 @@
    <widget class="QLabel" name="gender">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>30</y>
-      <width>91</width>
-      <height>20</height>
+      <x>90</x>
+      <y>50</y>
+      <width>141</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>?</string>
@@ -118,8 +93,14 @@
       <x>10</x>
       <y>10</y>
       <width>63</width>
-      <height>20</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>ПІБ:</string>
@@ -128,11 +109,16 @@
    <widget class="QLabel" name="bio">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>70</x>
       <y>10</y>
-      <width>861</width>
-      <height>20</height>
+      <width>531</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>?</string>
@@ -142,10 +128,16 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>50</y>
       <width>63</width>
-      <height>20</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Стать:</string>
@@ -155,10 +147,17 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>70</y>
+      <y>130</y>
       <width>81</width>
-      <height>20</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Досвід:</string>
@@ -167,14 +166,139 @@
    <widget class="QLabel" name="workExperience">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>70</y>
+      <x>100</x>
+      <y>130</y>
       <width>141</width>
-      <height>20</height>
+      <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
+     <string>?</string>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>1181</width>
+      <height>471</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1179</width>
+       <height>469</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout"/>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="recordOfPatientName">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>170</y>
+      <width>231</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>21</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Записи пацієнта </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="emailName">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>30</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Пошта:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="email">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>30</y>
+      <width>321</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="acceptPatientSelection">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>80</y>
+      <width>421</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Підтвердити вибір пацієнта</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="recordOfPatient">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>170</y>
+      <width>681</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>21</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa0000;&quot;&gt;оберіть пацієнта&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
   </widget>

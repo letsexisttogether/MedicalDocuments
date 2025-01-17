@@ -18,6 +18,8 @@ public:
 
     virtual ~DefaultRecord() = default;
 
+    virtual void InsertData() noexcept;
+
     ID GetID() const noexcept;
 
     // TODO: Remove if everything works
@@ -33,6 +35,8 @@ protected:
         noexcept;
 
     virtual void SetData(const TableRecord& record) noexcept = 0;
+
+    const QString& GetTableName() const noexcept;
 
 protected:
     ID m_ID{};

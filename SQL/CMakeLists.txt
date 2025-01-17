@@ -44,5 +44,8 @@ set(SQL_SOURCES
 	${CD}/Loaders/AppPharmConn/AppPharmConnMultyLoader.hpp
 	${CD}/Loaders/AppPharmConn/AppPharmConnMultyLoader.cpp
 
+	${CD}/Loaders/Patients/PatientsMultyLoader.hpp
+	${CD}/Loaders/Patients/PatientsMultyLoader.cpp
+
 	PARENT_SCOPE
 )

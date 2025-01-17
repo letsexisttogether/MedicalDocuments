@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "SQL/Tables/Pharmacies/PharmaciesRecord.hpp"
+#include "MainClient/General/PharmacyInfo/PharmacyInfo.hpp"
 
 namespace Ui
 {
@@ -15,7 +15,7 @@ class PharmacyViewWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit PharmacyViewWidget(const PharmaciesRecord& pharmacy,
+    explicit PharmacyViewWidget(PharmacyInfo&& pharmacyInfo,
         QWidget *parent = nullptr);
 
     ~PharmacyViewWidget();
@@ -28,7 +28,7 @@ private:
 private:
     Ui::PharmacyViewWidget *ui;
 
-    const PharmaciesRecord m_Pharmacy;
+    PharmacyInfo m_PharmacyInfo;
 };
 
 #endif // PHARMACIEVIEWWIDGET_HPP

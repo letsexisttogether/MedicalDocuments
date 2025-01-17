@@ -15,6 +15,9 @@ public:
 
     ~PharmacyInfo() = default;
 
+    const AppPharmConnRecord& GetAppPharmConn() const noexcept;
+    const PharmaciesRecord& GetPharmacy() const noexcept;
+
 private:
     AppPharmConnRecord m_AppPharmConn;
     PharmaciesRecord m_Pharmacy;

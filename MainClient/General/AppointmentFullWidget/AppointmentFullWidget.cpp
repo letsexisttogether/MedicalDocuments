@@ -25,9 +25,9 @@ AppointmentFullWidget::~AppointmentFullWidget()
 void AppointmentFullWidget::SetCompleteInformation() noexcept
 {
     SetDoctorSpecialization();
-    SetInfo();
+    SetKnownInfomation();
     SetPharmacies();
-    SetDiagnosis();
+    SetDiagnosis() ;
     SetRecommendations();
 }
 
@@ -42,7 +42,7 @@ void AppointmentFullWidget::SetDoctorSpecialization() noexcept
     specialityLabel->setToolTip(specialization.GetDescription());
 }
 
-void AppointmentFullWidget::SetInfo() noexcept
+void AppointmentFullWidget::SetKnownInfomation() noexcept
 {
     const AppointmentsRecord& appointment
         = m_AppointmentInfo.GetAppointment();
@@ -100,16 +100,10 @@ void AppointmentFullWidget::SetPharmacies() noexcept
 
     for (qsizetype i = 0; i < loader.GetCount(); ++i)
     {
-        const AppPharmConnRecord appPharmConn
-        {
-            loader.GetCurrent<AppPharmConnRecord>()
-        };
-
-        const PharmaciesRecord pharmacy{ appPharmConn.GetPharmacyID() };
-
         verticalLayout->addWidget(new PharmacyViewWidget
         {
-            pharmacy, widget
+            PharmacyInfo{ loader.GetCurrent<AppPharmConnRecord>() },
+            widget
         });
     }
 }

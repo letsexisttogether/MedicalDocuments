@@ -1,12 +1,15 @@
 #ifndef MULTYRECORDLOADER_H
 #define MULTYRECORDLOADER_H
 
+#include <QMap>
+
 #include "SQL/Tables/DefaultRecord.hpp"
 
 class MultyRecordLoader
 {
 public:
     using ID = DefaultRecord::ID;
+    using MultipleConditionsMap = QMap<QString, QString>;
 
 public:
     MultyRecordLoader() = delete;
@@ -26,7 +29,12 @@ public:
     MultyRecordLoader& operator = (MultyRecordLoader&&) = default;
 
 protected:
+    void LoadData() noexcept;
     void LoadData(const QString& column, const QString& value) noexcept;
+    void LoadData(MultipleConditionsMap&& conditions) noexcept;
+
+private:
+    void LoadRawData(const QString& query) noexcept;
 
 private:
     QString m_TableName;

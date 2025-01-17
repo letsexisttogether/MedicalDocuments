@@ -25,11 +25,21 @@ const qsizetype MultyRecordLoader::GetCount() const noexcept
     return m_Records.count();
 }
 
+
+void MultyRecordLoader::LoadData() noexcept
+{
+    const QString query
+    {
+        QString("SELECT ID FROM %1")
+            .arg(m_TableName)
+    };
+
+    LoadRawData(query);
+}
+
 void MultyRecordLoader::LoadData(const QString& column,
     const QString& value) noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
     const QString query
     {
         QString("SELECT ID FROM %1 WHERE %2 = '%3'")
@@ -37,6 +47,42 @@ void MultyRecordLoader::LoadData(const QString& column,
             .arg(column)
             .arg(value)
     };
+
+    LoadRawData(query);
+}
+
+void MultyRecordLoader::LoadData(MultipleConditionsMap&& conditions) noexcept
+{
+    QString selectConditions{ "WHERE " };
+
+    qsizetype i = 0;
+    qsizetype size = conditions.size();
+    for (MultipleConditionsMap::Iterator it = conditions.begin(); it != conditions.end(); ++it)
+    {
+        selectConditions.append(QString("%1 = '%2'")
+            .arg(it.key())
+            .arg(it.value()));
+
+        if (++i < size)
+        {
+            selectConditions.append(" AND ");
+        }
+    }
+
+    const QString query
+    {
+        QString("SELECT ID FROM %1 ")
+            .arg(m_TableName)
+            .append(selectConditions)
+    };
+
+    qDebug() << query;
+}
+
+
+void MultyRecordLoader::LoadRawData(const QString& query) noexcept
+{
+    SQLManager& manager{ SQLManager::GetInstance() };
 
     qDebug() << query;
 

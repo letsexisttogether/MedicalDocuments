@@ -77,11 +77,4 @@ void PatientWindow::SetAppointments() noexcept
             loader.GetCurrent<AppointmentsRecord>(), scrollAreaWidget
         });
     }
-
-    /*
-    verticalLayout->addItem(new QSpacerItem
-    {
-        50, 40
-    });
-    */
 }

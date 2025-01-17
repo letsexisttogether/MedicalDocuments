@@ -46,11 +46,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 		MANUAL_FINALIZATION
 		${PROJECT_SOURCES}
 		appointmentwindow.h appointmentwindow.cpp appointmentwindow.ui
-		redactwindow.h redactwindow.cpp redactwindow.ui
 		${AUTHORIZATION_SOURCES}
 		${SQL_SOURCES}
 		${MAINCLIENT_SOURCES}
-		MainClient/General/PharmacyInfo/PharmacyInfo.hpp MainClient/General/PharmacyInfo/PharmacyInfo.cpp
 	)
 else()
 	if(ANDROID)

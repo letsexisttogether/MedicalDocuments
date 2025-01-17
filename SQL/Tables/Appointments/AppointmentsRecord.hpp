@@ -14,9 +14,14 @@ public:
     AppointmentsRecord(AppointmentsRecord&&) = default;
 
     explicit AppointmentsRecord(const ID ID);
-    explicit AppointmentsRecord(const ID ID, const bool isByDoctor);
+    AppointmentsRecord(const ID ID, const bool isByDoctor);
+    AppointmentsRecord(const ID doctorID, const ID patientID,
+        const QDate& date, const QString& diagnosis,
+        const QString& recommendations);
 
     ~AppointmentsRecord() = default;
+
+    void InsertData() noexcept override;
 
     ID GetDoctorID() const noexcept;
     ID GetPatientID() const noexcept;

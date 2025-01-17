@@ -8,6 +8,11 @@ DefaultRecord::DefaultRecord(const ID ID, QString&& tableName)
     : m_ID{ ID }, m_TableName{ std::move(tableName) }
 {}
 
+void DefaultRecord::InsertData() noexcept
+{
+    qDebug() << "[DefaultRecord::InsertData()] Unimplemented behavior";
+}
+
 DefaultRecord::ID DefaultRecord::GetID() const noexcept
 {
     return m_ID;
@@ -60,4 +65,9 @@ TableRecord DefaultRecord::LoadRawData(const QString& column,
     }
 
     return data.first();
+}
+
+const QString& DefaultRecord::GetTableName() const noexcept
+{
+    return m_TableName;
 }

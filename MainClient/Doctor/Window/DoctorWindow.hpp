@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "SQL/Tables/Doctors/DoctorsRecord.hpp"
+#include "SQL/Tables/Patients/PatientsRecord.hpp"
 
 namespace Ui
 {
@@ -20,18 +21,22 @@ public:
 
     ~DoctorWindow();
 
-    QMap<QString, QVector<QString>> TestData;
-
 public slots:
-    void OnPatientChange(const QString &current_patient);
+    void OnPatientChange();
+    void OnAddAppointment();
 
 private:
-    void SetBIO() noexcept;
+    void UpdateDoctorInformation() noexcept;
+
+    void UpdatePatientInformation() noexcept;
+    void UpdateAppointments() noexcept;
+    void ClearAppointments() noexcept;
 
 private:
     Ui::DoctorWindow* ui;
 
     DoctorsRecord m_Doctor;
+    PatientsRecord m_Patient{};
 };
 
 #endif // DOCTORCLIENTWINDOW_H
