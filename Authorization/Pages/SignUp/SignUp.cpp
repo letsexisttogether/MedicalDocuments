@@ -67,20 +67,54 @@ void SignUp::HandleRegistrationClick()
         return;
     }
 
-    SQLManager::ID personID = AddPerson();
-    if (!personID)
+    PeopleRecord person
+    {
+        ui->firstName->text(),
+        ui->lastName->text(),
+        ui->patronymic->text(),
+        ui->maleRadioButton->isChecked(),
+        ui->birthdayCalendar->selectedDate()
+    };
+    person.InsertData();
+
+    if (person.IsEmpty())
     {
         return;
     }
 
-    SQLManager::ID passwordID = AddPassword();
-    if (!passwordID)
+    PasswordEncryptor encryptor{};
+
+    const QString enteredPassword{ ui->password->GetEditValue() };
+    const QString salt{ encryptor.GenerateSalt() };
+
+    const QString encryptedPassword
+    {
+        encryptor.Encrypt(enteredPassword, salt)
+    };
+
+    PasswordsRecord password
+    {
+        encryptedPassword,
+        salt
+    };
+    password.InsertData();
+
+    if (password.IsEmpty())
     {
         return;
     }
 
-    SQLManager::ID patientID = AddPatient(personID, passwordID);
-    if (!patientID)
+    PatientsRecord patient
+    {
+        person.GetID(),
+        ui->email->GetEditValue(),
+        password.GetID(),
+        ui->phoneNumber->text(),
+        ui->address->text()
+    };
+    patient.InsertData();
+
+    if (patient.IsEmpty())
     {
         return;
     }
@@ -95,60 +129,6 @@ void SignUp::HandleReturnClick()
     ResetEditFields();
 
     emit OperationCompleted();
-}
-
-SQLManager::ID SignUp::AddPerson() noexcept
-{
-    PeopleRecord person
-    {
-        ui->firstName->text(),
-        ui->lastName->text(),
-        ui->patronymic->text(),
-        ui->maleRadioButton->isChecked(),
-        ui->birthdayCalendar->selectedDate()
-    };
-
-    person.InsertData();
-
-    return person.GetID();
-}
-
-SQLManager::ID SignUp::AddPassword() noexcept
-{
-    const QString enteredPassword{ ui->password->GetEditValue() };
-    const QString salt{ m_Encryptor.GenerateSalt() };
-
-    const QString encryptedPassword
-    {
-        m_Encryptor.Encrypt(enteredPassword, salt)
-    };
-
-    PasswordsRecord password
-    {
-        encryptedPassword,
-        salt
-    };
-
-    password.InsertData();
-
-    return password.GetID();
-}
-
-SQLManager::ID SignUp::AddPatient(const SQLManager::ID personID,
-    const SQLManager::ID passwordID) noexcept
-{
-    PatientsRecord patient
-    {
-        personID,
-        ui->email->GetEditValue(),
-        passwordID,
-        ui->phoneNumber->text(),
-        ui->address->text()
-    };
-
-    patient.InsertData();
-
-    return patient.GetID();
 }
 
 void SignUp::ResetEditFields() noexcept

@@ -3,7 +3,6 @@
 
 #include <QWidget>
 
-#include "SQL/Manager/SQLManager.hpp"
 #include "Authorization/PasswordEncryption/PasswordEncryptor.hpp"
 
 namespace Ui
@@ -28,11 +27,6 @@ private slots:
     void HandleReturnClick();
 
 private:
-    SQLManager::ID AddPerson() noexcept;
-    SQLManager::ID AddPassword() noexcept;
-    SQLManager::ID AddPatient(const SQLManager::ID personID,
-        const SQLManager::ID passwordID) noexcept;
-
     void ResetEditFields() noexcept;
 
 private:
