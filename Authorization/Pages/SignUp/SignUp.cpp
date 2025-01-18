@@ -19,6 +19,12 @@ SignUp::SignUp(QWidget *parent)
     connect(ui->returnButton, &QPushButton::clicked, this,
         &SignUp::HandleReturnClick);
 
+    connect(ui->passwordVisibility, &QCheckBox::clicked, [=]()
+    {
+        ui->password->SetEchoMode((ui->passwordVisibility->isChecked()) ?
+            (QLineEdit::Normal) : (QLineEdit::Password));
+    });
+
     connect(ui->maleRadioButton, &QRadioButton::clicked, [=]()
     {
         if (ui->maleRadioButton->isChecked())

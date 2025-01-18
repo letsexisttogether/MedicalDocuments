@@ -10,24 +10,22 @@ PasswordsRecord::PasswordsRecord(const ID ID)
     LoadData("ID", QString::number(ID));
 }
 
-PasswordsRecord::PasswordsRecord(const QString& encrypted, const QString& salt)
+PasswordsRecord::PasswordsRecord(const QString& encrypted,
+    const QString& salt)
     : DefaultRecord{ "Passwords" },
     m_Encrypted{ encrypted }, m_Salt{ salt }
 {}
 
 void PasswordsRecord::InsertData() noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
-    const QString query
+    const QString values
     {
-        QString("INSERT INTO %1 VALUES ('%2', '%3');")
-            .arg(GetTableName())
+        QString("'%1', '%2'")
             .arg(m_Encrypted)
             .arg(m_Salt)
     };
 
-    m_ID = manager.InsertDataToTable(query);
+    RawInsertData(values);
 }
 
 const QString& PasswordsRecord::GetEncrypted() const noexcept

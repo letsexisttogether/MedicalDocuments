@@ -35,12 +35,9 @@ AppointmentsRecord::AppointmentsRecord(const ID doctorID,
 
 void AppointmentsRecord::InsertData() noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
-    const QString query
+    const QString values
     {
-        QString("INSERT INTO %1 VALUES (%2, %3, '%4', '%5', '%6')")
-            .arg(GetTableName())
+        QString("%1, %2, '%3', '%4', '%5'")
             .arg(m_DoctorID)
             .arg(m_PatientID)
             .arg(m_Date.toString("yyyy-MM-dd"))
@@ -48,7 +45,7 @@ void AppointmentsRecord::InsertData() noexcept
             .arg(m_Recommendations)
     };
 
-    m_ID = manager.InsertDataToTable(query);
+    RawInsertData(values);
 }
 
 AppointmentsRecord::ID AppointmentsRecord::GetDoctorID() const noexcept

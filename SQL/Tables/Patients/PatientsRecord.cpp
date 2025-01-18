@@ -26,12 +26,9 @@ PatientsRecord::PatientsRecord(const QString& email)
 
 void PatientsRecord::InsertData() noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
-    const QString query
+    const QString values
     {
-        QString("INSERT INTO %1 VALUES (%2, '%3', %4, '%5', '%6')")
-            .arg(GetTableName())
+        QString("%1, '%2', %3, '%4', '%5'")
             .arg(m_PersonID)
             .arg(m_Email)
             .arg(m_PasswordID)
@@ -39,7 +36,7 @@ void PatientsRecord::InsertData() noexcept
             .arg(m_Address)
     };
 
-    m_ID = manager.InsertDataToTable(query);
+    RawInsertData(values);
 }
 
 DefaultRecord::ID PatientsRecord::GetPersonID() const

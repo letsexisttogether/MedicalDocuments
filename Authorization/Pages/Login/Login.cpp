@@ -18,6 +18,11 @@ Login::Login(QWidget *parent)
         &Login::HandleLoginClick);
     connect(ui->registerButton, &QPushButton::clicked, this,
         &Login::HandleRegistrationClick);
+    connect(ui->passwordVisibility, &QCheckBox::clicked, [=]()
+    {
+        ui->password->SetEchoMode((ui->passwordVisibility->isChecked()) ?
+            (QLineEdit::Normal) : (QLineEdit::Password));
+    });
 
     ui->login->SetName("Логін");
     ui->login->SetChecker(new DefaultEmailChecker{});

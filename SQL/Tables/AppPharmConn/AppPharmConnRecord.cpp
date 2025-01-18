@@ -19,19 +19,16 @@ AppPharmConnRecord::AppPharmConnRecord(const ID appointmentID,
 
 void AppPharmConnRecord::InsertData() noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
-    const QString query
+    const QString values
     {
-        QString("INSERT INTO %1 VALUES (%2, %3, '%4', %5)")
-            .arg(GetTableName())
+        QString("%1, %2, '%3', %4")
             .arg(m_AppointmentID)
             .arg(m_PharmacyID)
             .arg(m_Amount)
             .arg(m_DayStreak)
     };
 
-    m_ID = manager.InsertDataToTable(query);
+    RawInsertData(values);
 }
 
 const DefaultRecord::ID AppPharmConnRecord::GetAppointmentID() const noexcept

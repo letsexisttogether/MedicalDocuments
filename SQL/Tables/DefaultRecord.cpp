@@ -67,7 +67,27 @@ TableRecord DefaultRecord::LoadRawData(const QString& column,
     return data.first();
 }
 
-const QString& DefaultRecord::GetTableName() const noexcept
+void DefaultRecord::RawInsertData(const QString& values) noexcept
 {
-    return m_TableName;
+    if (values.isEmpty())
+    {
+        qWarning() << "[DefaultRecord::RawInsertData()]"
+            << "The values are empty";
+
+        return;
+    }
+
+    SQLManager& manager{ SQLManager::GetInstance() };
+
+    const QString query
+    {
+        QString("INSERT INTO %1 VALUES (%2);")
+            .arg(m_TableName)
+            .arg(values)
+    };
+
+    if (const ID insertedRecordID = manager.InsertDataToTable(query))
+    {
+        m_ID = insertedRecordID;
+    }
 }

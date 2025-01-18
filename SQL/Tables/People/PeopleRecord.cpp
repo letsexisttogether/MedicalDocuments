@@ -20,12 +20,9 @@ PeopleRecord::PeopleRecord(const QString& firstName,
 
 void PeopleRecord::InsertData() noexcept
 {
-    SQLManager& manager{ SQLManager::GetInstance() };
-
-    const QString query
+    const QString values
     {
-        QString("INSERT INTO %1 VALUES ('%2', '%3', '%4', %5, '%6');")
-            .arg(GetTableName())
+        QString("'%1', '%2', '%3', %4, '%5'")
             .arg(m_FirstName)
             .arg(m_LastName)
             .arg(m_Patrynomic)
@@ -33,7 +30,7 @@ void PeopleRecord::InsertData() noexcept
             .arg(m_Birthdate.toString("yyyy-MM-dd"))
     };
 
-    m_ID = manager.InsertDataToTable(query);
+    RawInsertData(values);
 }
 
 const QString& PeopleRecord::GetFirstName() const noexcept

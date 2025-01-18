@@ -34,9 +34,9 @@ protected:
     TableRecord LoadRawData(const QString& column, const QString& value)
         noexcept;
 
-    virtual void SetData(const TableRecord& record) noexcept = 0;
+    void RawInsertData(const QString& values) noexcept;
 
-    const QString& GetTableName() const noexcept;
+    virtual void SetData(const TableRecord& record) noexcept = 0;
 
 protected:
     ID m_ID{};
