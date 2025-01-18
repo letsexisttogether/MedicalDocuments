@@ -4,7 +4,6 @@
 #include "SQL/Loaders/Appointments/AppointmentsMultyLoader.hpp"
 #include "SQL/Tables/People/PeopleRecord.hpp"
 #include "MainClient/Patient/Appointment/PatientAppointment.hpp"
-#include "appointmentwindow.h"
 
 PatientWindow::PatientWindow(const DefaultRecord::ID ID, QWidget *parent)
     : QMainWindow(parent), ui{ new Ui::PatientWindow }, m_Patient{ ID }
@@ -18,17 +17,6 @@ PatientWindow::PatientWindow(const DefaultRecord::ID ID, QWidget *parent)
 PatientWindow::~PatientWindow()
 {
     delete ui;
-}
-
-void PatientWindow::OpenAppointmentWindow()
-{
-    AppointmentWindow *appointmentWindow = new AppointmentWindow();
-
-    // Відображаємо друге вікно
-    appointmentWindow->show();
-
-    // Закриваємо перше вікно
-    this->close();
 }
 
 void PatientWindow::SetBIO() noexcept

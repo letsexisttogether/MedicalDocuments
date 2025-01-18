@@ -18,8 +18,6 @@ int main(int argc, char *argv[])
     AuthorizationWindow w;
     w.show();
 
-    // AddPasswords();
-
     return a.exec();
 }
 

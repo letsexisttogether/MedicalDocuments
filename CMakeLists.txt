@@ -34,7 +34,6 @@ set(PROJECT_SOURCES
 
 add_subdirectory(Authorization)
 add_subdirectory(MainClient)
-
 add_subdirectory(SQL)
 
 # ============================================
@@ -45,11 +44,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 	qt_add_executable(MedicalDocuments
 		MANUAL_FINALIZATION
 		${PROJECT_SOURCES}
-		appointmentwindow.h appointmentwindow.cpp appointmentwindow.ui
 		${AUTHORIZATION_SOURCES}
 		${SQL_SOURCES}
 		${MAINCLIENT_SOURCES}
-		SQL/Loaders/Pharmacies/PharmacyMultyLoader.hpp SQL/Loaders/Pharmacies/PharmacyMultyLoader.cpp
 	)
 else()
 	if(ANDROID)
@@ -76,8 +73,10 @@ target_link_libraries(MedicalDocuments PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
 # ============================================
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.MedicalDocuments)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER
+	com.example.MedicalDocuments)
 endif()
+
 set_target_properties(MedicalDocuments PROPERTIES
 	${BUNDLE_ID_OPTION}
 	MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}

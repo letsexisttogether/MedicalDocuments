@@ -11,6 +11,11 @@
 *.o
 *.obj
 
+# Doxygen
+Doxyfile
+Doxyfile~
+html/
+
 # Precompiled Headers
 *.gch
 *.pch

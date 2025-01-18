@@ -28,9 +28,6 @@ public:
 
     ~PatientWindow();
 
-private slots:
-    void OpenAppointmentWindow();
-
 private:
     void SetBIO() noexcept;
 
