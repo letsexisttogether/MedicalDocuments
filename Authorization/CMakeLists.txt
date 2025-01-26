@@ -20,6 +20,10 @@ set(AUTHORIZATION_SOURCES
 	${CD}/FieldCheck/DefaultCheckers/DefaultEmailChecker.hpp
 	${CD}/FieldCheck/DefaultCheckers/DefaultEmailChecker.cpp
 
+	${CD}/PasswordEchoChanger/PasswordEchoChanger.hpp
+	${CD}/PasswordEchoChanger/PasswordEchoChanger.cpp
+	${CD}/PasswordEchoChanger/PasswordEchoChanger.ui
+
 	${CD}/Pages/Login/Login.hpp
 	${CD}/Pages/Login/Login.cpp
 	${CD}/Pages/Login/Login.ui
